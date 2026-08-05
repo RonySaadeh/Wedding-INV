@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexandra &amp; James — We're Getting Married</title>
+<meta name="description" content="Join us as we celebrate our wedding day.">
+
+<!-- ============================================================
+     QUICK CUSTOMIZATION GUIDE
+     1. Replace "Alexandra" and "James" everywhere with your names.
+     2. Edit js/script.js -> CONFIG object (wedding date, monogram).
+     3. Update the Event Details section (venue, address, times).
+     4. Swap the gallery placeholders in the Gallery section for
+        real <img> tags once you have photos.
+     5. Point the RSVP form's `action` at your own Formspree (or
+        Google Form) endpoint — see the comment above the <form>.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ================= ENVELOPE INTRO ================= -->
+<div class="envelope-overlay" id="envelopeOverlay">
+  <button class="skip-intro" id="skipIntro" type="button">Skip intro</button>
+
+  <div class="envelope-stage">
+    <div class="envelope" id="envelope">
+
+      <div class="letter" id="letter">
+        <div class="letter__ornament">&#10086;</div>
+        <p class="letter__eyebrow">Together with their families</p>
+        <h1 class="letter__names">Alexandra <span>&amp;</span> James</h1>
+        <p class="letter__request">request the pleasure of your company</p>
+        <p class="letter__date">June 12, 2027</p>
+      </div>
+
+      <div class="envelope__back"></div>
+      <div class="envelope__left"></div>
+      <div class="envelope__right"></div>
+      <div class="envelope__front"></div>
+      <div class="envelope__flap">
+        <div class="wax-seal" id="waxSeal">A&nbsp;J</div>
+      </div>
+    </div>
+
+    <p class="tap-hint" id="tapHint">Tap the envelope to open your invitation</p>
+  </div>
+</div>
+
+<!-- ================= SITE NAV ================= -->
+<header class="site-nav" id="siteNav">
+  <a href="#home" class="site-nav__brand">A&nbsp;&amp;&nbsp;J</a>
+  <button class="site-nav__toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="site-nav__links" id="navLinks">
+    <a href="#story">Our Story</a>
+    <a href="#details">Details</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#rsvp">RSVP</a>
+  </nav>
+</header>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main class="site-content" id="siteContent">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero__ornament-top" aria-hidden="true">&#10086;</div>
+    <p class="hero__eyebrow reveal">We're getting married</p>
+    <h1 class="hero__names reveal">Alexandra <span class="amp">&amp;</span> James</h1>
+    <p class="hero__date reveal">June 12th, 2027 &middot; Beirut, Lebanon</p>
+    <div class="hero__divider reveal" aria-hidden="true">
+      <svg viewBox="0 0 200 20" class="divider-svg"><line x1="0" y1="10" x2="80" y2="10"/><circle cx="100" cy="10" r="4"/><line x1="120" y1="10" x2="200" y2="10"/></svg>
+    </div>
+    <a href="#story" class="hero__scroll reveal">Scroll to begin</a>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="countdown">
+    <p class="section-eyebrow reveal">Counting down to forever</p>
+    <div class="countdown__grid reveal" id="countdown">
+      <div class="countdown__unit"><span id="cd-days">00</span><small>Days</small></div>
+      <div class="countdown__unit"><span id="cd-hours">00</span><small>Hours</small></div>
+      <div class="countdown__unit"><span id="cd-mins">00</span><small>Minutes</small></div>
+      <div class="countdown__unit"><span id="cd-secs">00</span><small>Seconds</small></div>
+    </div>
+  </section>
+
+  <!-- OUR STORY -->
+  <section class="story" id="story">
+    <p class="section-eyebrow reveal">Our Story</p>
+    <h2 class="section-title reveal">How it began</h2>
+    <div class="story__timeline">
+      <div class="story__item reveal">
+        <span class="story__year">2019</span>
+        <h3>The First Hello</h3>
+        <p>We met on a warm September evening, introduced by mutual friends over dinner, and talked until the restaurant closed around us.</p>
+      </div>
+      <div class="story__item reveal">
+        <span class="story__year">2022</span>
+        <h3>Moving In Together</h3>
+        <p>We found a little apartment to call our own and started building a life filled with quiet mornings and shared adventures.</p>
+      </div>
+      <div class="story__item reveal">
+        <span class="story__year">2025</span>
+        <h3>The Proposal</h3>
+        <p>On a cliffside at sunset, with the sea below and the sky turning gold, James asked Alexandra to be his forever.</p>
+      </div>
+      <div class="story__item reveal">
+        <span class="story__year">2027</span>
+        <h3>The Wedding</h3>
+        <p>And now, surrounded by everyone we love, we begin our next chapter — as husband and wife.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT DETAILS -->
+  <section class="details" id="details">
+    <p class="section-eyebrow reveal">The Celebration</p>
+    <h2 class="section-title reveal">Event Details</h2>
+    <div class="details__grid">
+      <div class="details__card reveal">
+        <span class="details__icon" aria-hidden="true">&#10086;</span>
+        <h3>Ceremony</h3>
+        <p class="details__time">4:00 PM</p>
+        <p>Saint Anne Cathedral<br>123 Cathedral Avenue<br>Beirut, Lebanon</p>
+        <a href="https://maps.google.com" class="details__link" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="details__card reveal">
+        <span class="details__icon" aria-hidden="true">&#10086;</span>
+        <h3>Reception</h3>
+        <p class="details__time">7:00 PM</p>
+        <p>The Grand Terrace Estate<br>45 Garden Hill Road<br>Beirut, Lebanon</p>
+        <a href="https://maps.google.com" class="details__link" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div class="details__card reveal">
+        <span class="details__icon" aria-hidden="true">&#10086;</span>
+        <h3>Dress Code</h3>
+        <p class="details__time">Black Tie Optional</p>
+        <p>We'd love to see you in elegant formal attire. Soft gold, ivory, and jewel tones are especially welcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <p class="section-eyebrow reveal">Moments</p>
+    <h2 class="section-title reveal">Gallery</h2>
+    <div class="gallery__grid">
+      <div class="gallery__item reveal"><span>Add Photo</span></div>
+      <div class="gallery__item reveal"><span>Add Photo</span></div>
+      <div class="gallery__item reveal"><span>Add Photo</span></div>
+      <div class="gallery__item reveal"><span>Add Photo</span></div>
+      <div class="gallery__item reveal"><span>Add Photo</span></div>
+      <div class="gallery__item reveal"><span>Add Photo</span></div>
+    </div>
+    <p class="gallery__hint reveal">Replace each tile in <code>index.html</code> with your own <code>&lt;img&gt;</code> photo.</p>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp" id="rsvp">
+    <p class="section-eyebrow reveal">Kindly Reply</p>
+    <h2 class="section-title reveal">RSVP</h2>
+    <p class="rsvp__intro reveal">We can't wait to celebrate with you. Please respond by May 1st, 2027.</p>
+
+    <!--
+      This form currently only shows a confirmation message locally (see js/script.js).
+      To actually receive responses, sign up free at https://formspree.io,
+      create a form, and set the action below to your endpoint, e.g.:
+      <form id="rsvpForm" action="https://formspree.io/f/xxxxxxx" method="POST">
+    -->
+    <form class="rsvp__form reveal" id="rsvpForm">
+      <div class="form-row">
+        <label for="guestName">Full Name</label>
+        <input type="text" id="guestName" name="name" required>
+      </div>
+      <div class="form-row">
+        <label for="guestEmail">Email</label>
+        <input type="email" id="guestEmail" name="email" required>
+      </div>
+      <div class="form-row form-row--radio">
+        <span>Will you attend?</span>
+        <label><input type="radio" name="attending" value="Joyfully Accepts" checked> Joyfully Accepts</label>
+        <label><input type="radio" name="attending" value="Regretfully Declines"> Regretfully Declines</label>
+      </div>
+      <div class="form-row">
+        <label for="guestCount">Number of Guests</label>
+        <input type="number" id="guestCount" name="guests" min="1" max="6" value="1">
+      </div>
+      <div class="form-row">
+        <label for="guestMessage">Message (optional)</label>
+        <textarea id="guestMessage" name="message" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn-gold">Send RSVP</button>
+      <p class="rsvp__success" id="rsvpSuccess" hidden>Thank you! Your RSVP has been recorded.</p>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="site-footer__monogram">A&nbsp;&amp;&nbsp;J</div>
+    <p>With love and gratitude, we thank you for being part of our story.</p>
+    <p class="site-footer__hashtag">#AlexandraAndJames2027</p>
+    <p class="site-footer__copy">&copy; 2027 Alexandra &amp; James</p>
+  </footer>
+
+</main>
+
+<script src="js/script.js"></script>
+</body>
+</html>

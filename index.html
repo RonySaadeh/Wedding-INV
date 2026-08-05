@@ -3,171 +3,171 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexandra &amp; James — We're Getting Married</title>
+<title>Bride &amp; Groom — We're Getting Married</title>
 <meta name="description" content="Join us as we celebrate our wedding day.">
 
 <!-- ============================================================
      QUICK CUSTOMIZATION GUIDE
-     1. Replace "Alexandra" and "James" everywhere with your names.
-     2. Edit js/script.js -> CONFIG object (wedding date, monogram).
-     3. Update the Event Details section (venue, address, times).
-     4. Swap the gallery placeholders in the Gallery section for
-        real <img> tags once you have photos.
+     1. Replace "Bride" / "Groom" and "B & G" everywhere with your
+        real names and monogram initials.
+     2. Edit js/script.js -> CONFIG object (wedding date).
+     3. Update the Invitation section: parents' names, ceremony &
+        reception venues/times, registry note.
+     4. Replace the oval photo placeholder in #countdown with a
+        real <img>.
      5. Point the RSVP form's `action` at your own Formspree (or
         Google Form) endpoint — see the comment above the <form>.
      ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <!-- ================= ENVELOPE INTRO ================= -->
 <div class="envelope-overlay" id="envelopeOverlay">
+  <span class="lace-corner lace-corner--tl" aria-hidden="true"></span>
+  <span class="lace-corner lace-corner--br" aria-hidden="true"></span>
   <button class="skip-intro" id="skipIntro" type="button">Skip intro</button>
 
   <div class="envelope-stage">
-    <div class="envelope" id="envelope">
+    <p class="envelope-quote">
+      &ldquo;I have found the one whom my soul loves.&rdquo;
+      <span>Song of Songs 3:4</span>
+    </p>
 
-      <div class="letter" id="letter">
-        <div class="letter__ornament">&#10086;</div>
-        <p class="letter__eyebrow">Together with their families</p>
-        <h1 class="letter__names">Alexandra <span>&amp;</span> James</h1>
-        <p class="letter__request">request the pleasure of your company</p>
-        <p class="letter__date">June 12, 2027</p>
-      </div>
-
-      <div class="envelope__back"></div>
-      <div class="envelope__left"></div>
-      <div class="envelope__right"></div>
-      <div class="envelope__front"></div>
-      <div class="envelope__flap">
-        <div class="wax-seal" id="waxSeal">A&nbsp;J</div>
-      </div>
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
+      <div class="envelope__body"></div>
+      <svg class="envelope__flap" viewBox="0 0 400 166" preserveAspectRatio="none" aria-hidden="true">
+        <path class="envelope__lace" d="M0,8.0 Q22.1,13.3 33.3,33.0 Q55.4,38.3 66.7,58.0 Q88.7,63.3 100.0,83.0 Q122.1,88.3 133.3,108.0 Q155.4,113.3 166.7,133.0 Q188.7,138.3 200.0,158.0 Q211.3,138.3 233.3,133.0 Q244.6,113.3 266.7,108.0 Q277.9,88.3 300.0,83.0 Q311.3,63.3 333.3,58.0 Q344.6,38.3 366.7,33.0 Q377.9,13.3 400.0,8.0 L0,8.0 Z"/>
+        <g class="envelope__lace-dots" fill="#fffdf8">
+          <circle cx="22.1" cy="13.3" r="3.4"/><circle cx="55.4" cy="38.3" r="3.4"/><circle cx="88.7" cy="63.3" r="3.4"/><circle cx="122.1" cy="88.3" r="3.4"/><circle cx="155.4" cy="113.3" r="3.4"/><circle cx="188.7" cy="138.3" r="3.4"/>
+          <circle cx="377.9" cy="13.3" r="3.4"/><circle cx="344.6" cy="38.3" r="3.4"/><circle cx="311.3" cy="63.3" r="3.4"/><circle cx="277.9" cy="88.3" r="3.4"/><circle cx="244.6" cy="113.3" r="3.4"/><circle cx="211.3" cy="138.3" r="3.4"/>
+        </g>
+        <path class="envelope__paper" d="M0,8 L400,8 L200,146 Z"/>
+        <text class="envelope__monogram" x="200" y="102" text-anchor="middle">B &amp; G</text>
+      </svg>
     </div>
 
-    <p class="tap-hint" id="tapHint">Tap the envelope to open your invitation</p>
+    <p class="tap-hint" id="tapHint">Open Invitation</p>
   </div>
 </div>
 
 <!-- ================= SITE NAV ================= -->
 <header class="site-nav" id="siteNav">
-  <a href="#home" class="site-nav__brand">A&nbsp;&amp;&nbsp;J</a>
+  <a href="#top" class="site-nav__brand">B &amp; G</a>
   <button class="site-nav__toggle" id="navToggle" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
   <nav class="site-nav__links" id="navLinks">
-    <a href="#story">Our Story</a>
-    <a href="#details">Details</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#invitation">Invitation</a>
+    <a href="#countdown">Countdown</a>
     <a href="#rsvp">RSVP</a>
   </nav>
 </header>
 
 <!-- ================= MAIN CONTENT ================= -->
 <main class="site-content" id="siteContent">
+  <a id="top"></a>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero__ornament-top" aria-hidden="true">&#10086;</div>
-    <p class="hero__eyebrow reveal">We're getting married</p>
-    <h1 class="hero__names reveal">Alexandra <span class="amp">&amp;</span> James</h1>
-    <p class="hero__date reveal">June 12th, 2027 &middot; Beirut, Lebanon</p>
-    <div class="hero__divider reveal" aria-hidden="true">
-      <svg viewBox="0 0 200 20" class="divider-svg"><line x1="0" y1="10" x2="80" y2="10"/><circle cx="100" cy="10" r="4"/><line x1="120" y1="10" x2="200" y2="10"/></svg>
+  <!-- INVITATION -->
+  <section class="invitation" id="invitation">
+    <div class="invitation__parents reveal">
+      <div class="invitation__parent">
+        <p>Mr. &amp; Mrs.<br>Groom's Parents</p>
+      </div>
+      <div class="invitation__divider" aria-hidden="true"></div>
+      <div class="invitation__parent">
+        <p>Mr. &amp; Mrs.<br>Bride's Parents</p>
+      </div>
     </div>
-    <a href="#story" class="hero__scroll reveal">Scroll to begin</a>
+
+    <p class="invitation__request reveal">Request the honor of your presence<br>at the marriage of their children</p>
+
+    <h1 class="invitation__names reveal">Groom <span>&amp;</span> Bride</h1>
+
+    <p class="invitation__date reveal">Saturday, June 12, 2027</p>
+
+    <div class="invitation__event reveal">
+      <svg class="candle-icon" viewBox="0 0 60 70" aria-hidden="true">
+        <path d="M18 66 Q18 40 22 40 M30 66 L30 30 M42 66 Q42 40 38 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <ellipse cx="18" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <ellipse cx="30" cy="24" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <ellipse cx="42" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M8 62 Q30 54 52 62" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M25 60 Q30 66 35 60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <p class="invitation__event-label">Religious Ceremony</p>
+      <p class="invitation__event-time">4:00 PM</p>
+      <p class="invitation__event-venue">Saint Anne Cathedral, Beirut</p>
+    </div>
+
+    <div class="invitation__event reveal">
+      <svg class="candle-icon" viewBox="0 0 60 70" aria-hidden="true">
+        <path d="M18 66 Q18 40 22 40 M30 66 L30 30 M42 66 Q42 40 38 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <ellipse cx="18" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <ellipse cx="30" cy="24" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <ellipse cx="42" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M8 62 Q30 54 52 62" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M25 60 Q30 66 35 60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+      <p class="invitation__event-label">Reception to Follow</p>
+      <p class="invitation__event-venue">The Grand Terrace Estate, Beirut</p>
+    </div>
+
+    <p class="invitation__registry reveal">For those who wish, a wedding registry<br>is available at Your Bank Name.<br><a href="#">0000-0000-00</a></p>
   </section>
 
   <!-- COUNTDOWN -->
-  <section class="countdown">
-    <p class="section-eyebrow reveal">Counting down to forever</p>
-    <div class="countdown__grid reveal" id="countdown">
-      <div class="countdown__unit"><span id="cd-days">00</span><small>Days</small></div>
-      <div class="countdown__unit"><span id="cd-hours">00</span><small>Hours</small></div>
-      <div class="countdown__unit"><span id="cd-mins">00</span><small>Minutes</small></div>
-      <div class="countdown__unit"><span id="cd-secs">00</span><small>Seconds</small></div>
+  <section class="countdown" id="countdown">
+    <div class="countdown__photo reveal"><span>Add Photo</span></div>
+    <p class="countdown__script reveal">Our forever begins in</p>
+    <div class="countdown__clock reveal" id="clock">
+      <span id="cd-days">00</span><i>:</i><span id="cd-hours">00</span><i>:</i><span id="cd-mins">00</span><i>:</i><span id="cd-secs">00</span>
+    </div>
+    <div class="countdown__labels reveal">
+      <small>Days</small><small>Hours</small><small>Minutes</small><small>Seconds</small>
     </div>
   </section>
 
-  <!-- OUR STORY -->
-  <section class="story" id="story">
-    <p class="section-eyebrow reveal">Our Story</p>
-    <h2 class="section-title reveal">How it began</h2>
-    <div class="story__timeline">
-      <div class="story__item reveal">
-        <span class="story__year">2019</span>
-        <h3>The First Hello</h3>
-        <p>We met on a warm September evening, introduced by mutual friends over dinner, and talked until the restaurant closed around us.</p>
+  <!-- RSVP TEASER ENVELOPE -->
+  <section class="rsvp-teaser">
+    <span class="lace-corner lace-corner--tl" aria-hidden="true"></span>
+    <span class="lace-corner lace-corner--br" aria-hidden="true"></span>
+    <a href="#rsvp" class="teaser-envelope reveal" aria-label="Go to RSVP form">
+      <svg class="teaser-envelope__flap" viewBox="0 0 400 166" preserveAspectRatio="none" aria-hidden="true">
+        <path class="envelope__lace" d="M0,8.0 Q22.1,13.3 33.3,33.0 Q55.4,38.3 66.7,58.0 Q88.7,63.3 100.0,83.0 Q122.1,88.3 133.3,108.0 Q155.4,113.3 166.7,133.0 Q188.7,138.3 200.0,158.0 Q211.3,138.3 233.3,133.0 Q244.6,113.3 266.7,108.0 Q277.9,88.3 300.0,83.0 Q311.3,63.3 333.3,58.0 Q344.6,38.3 366.7,33.0 Q377.9,13.3 400.0,8.0 L0,8.0 Z"/>
+        <g class="envelope__lace-dots" fill="#fffdf8">
+          <circle cx="22.1" cy="13.3" r="3.4"/><circle cx="55.4" cy="38.3" r="3.4"/><circle cx="88.7" cy="63.3" r="3.4"/><circle cx="122.1" cy="88.3" r="3.4"/><circle cx="155.4" cy="113.3" r="3.4"/><circle cx="188.7" cy="138.3" r="3.4"/>
+          <circle cx="377.9" cy="13.3" r="3.4"/><circle cx="344.6" cy="38.3" r="3.4"/><circle cx="311.3" cy="63.3" r="3.4"/><circle cx="277.9" cy="88.3" r="3.4"/><circle cx="244.6" cy="113.3" r="3.4"/><circle cx="211.3" cy="138.3" r="3.4"/>
+        </g>
+        <path class="envelope__paper" d="M0,8 L400,8 L200,146 Z"/>
+      </svg>
+      <div class="teaser-envelope__body">
+        <div class="teaser-envelope__card">
+          <p class="teaser-envelope__script">Kindly Rsvp</p>
+          <p class="teaser-envelope__cta">Click Here</p>
+        </div>
+        <p class="teaser-envelope__monogram">B &amp; G</p>
       </div>
-      <div class="story__item reveal">
-        <span class="story__year">2022</span>
-        <h3>Moving In Together</h3>
-        <p>We found a little apartment to call our own and started building a life filled with quiet mornings and shared adventures.</p>
-      </div>
-      <div class="story__item reveal">
-        <span class="story__year">2025</span>
-        <h3>The Proposal</h3>
-        <p>On a cliffside at sunset, with the sea below and the sky turning gold, James asked Alexandra to be his forever.</p>
-      </div>
-      <div class="story__item reveal">
-        <span class="story__year">2027</span>
-        <h3>The Wedding</h3>
-        <p>And now, surrounded by everyone we love, we begin our next chapter — as husband and wife.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EVENT DETAILS -->
-  <section class="details" id="details">
-    <p class="section-eyebrow reveal">The Celebration</p>
-    <h2 class="section-title reveal">Event Details</h2>
-    <div class="details__grid">
-      <div class="details__card reveal">
-        <span class="details__icon" aria-hidden="true">&#10086;</span>
-        <h3>Ceremony</h3>
-        <p class="details__time">4:00 PM</p>
-        <p>Saint Anne Cathedral<br>123 Cathedral Avenue<br>Beirut, Lebanon</p>
-        <a href="https://maps.google.com" class="details__link" target="_blank" rel="noopener">Get Directions</a>
-      </div>
-      <div class="details__card reveal">
-        <span class="details__icon" aria-hidden="true">&#10086;</span>
-        <h3>Reception</h3>
-        <p class="details__time">7:00 PM</p>
-        <p>The Grand Terrace Estate<br>45 Garden Hill Road<br>Beirut, Lebanon</p>
-        <a href="https://maps.google.com" class="details__link" target="_blank" rel="noopener">Get Directions</a>
-      </div>
-      <div class="details__card reveal">
-        <span class="details__icon" aria-hidden="true">&#10086;</span>
-        <h3>Dress Code</h3>
-        <p class="details__time">Black Tie Optional</p>
-        <p>We'd love to see you in elegant formal attire. Soft gold, ivory, and jewel tones are especially welcome.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery" id="gallery">
-    <p class="section-eyebrow reveal">Moments</p>
-    <h2 class="section-title reveal">Gallery</h2>
-    <div class="gallery__grid">
-      <div class="gallery__item reveal"><span>Add Photo</span></div>
-      <div class="gallery__item reveal"><span>Add Photo</span></div>
-      <div class="gallery__item reveal"><span>Add Photo</span></div>
-      <div class="gallery__item reveal"><span>Add Photo</span></div>
-      <div class="gallery__item reveal"><span>Add Photo</span></div>
-      <div class="gallery__item reveal"><span>Add Photo</span></div>
-    </div>
-    <p class="gallery__hint reveal">Replace each tile in <code>index.html</code> with your own <code>&lt;img&gt;</code> photo.</p>
+    </a>
   </section>
 
   <!-- RSVP -->
   <section class="rsvp" id="rsvp">
-    <p class="section-eyebrow reveal">Kindly Reply</p>
-    <h2 class="section-title reveal">RSVP</h2>
-    <p class="rsvp__intro reveal">We can't wait to celebrate with you. Please respond by May 1st, 2027.</p>
+    <h2 class="rsvp__title reveal">Rsvp</h2>
+    <svg class="candle-icon candle-icon--rsvp reveal" viewBox="0 0 60 70" aria-hidden="true">
+      <path d="M18 66 Q18 40 22 40 M30 66 L30 30 M42 66 Q42 40 38 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <ellipse cx="18" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <ellipse cx="30" cy="24" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <ellipse cx="42" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M8 62 Q30 54 52 62" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <path d="M25 60 Q30 66 35 60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    </svg>
+    <p class="rsvp__intro reveal">We'd love for you to be part of our celebration! Please fill in the form below to let us know if you can make it.</p>
+    <p class="rsvp__deadline reveal">Please reply by May 1st, 2027</p>
 
     <!--
       This form currently only shows a confirmation message locally (see js/script.js).
@@ -177,37 +177,36 @@
     -->
     <form class="rsvp__form reveal" id="rsvpForm">
       <div class="form-row">
-        <label for="guestName">Full Name</label>
+        <label for="guestName">Your name</label>
         <input type="text" id="guestName" name="name" required>
       </div>
+
       <div class="form-row">
-        <label for="guestEmail">Email</label>
-        <input type="email" id="guestEmail" name="email" required>
+        <label>Will you be attending our wedding?*</label>
+        <div class="pill-group" id="attendingGroup">
+          <button type="button" class="pill is-active" data-value="Joyfully accepts">Joyfully accepts</button>
+          <button type="button" class="pill" data-value="Regretfully declines">Regretfully declines</button>
+        </div>
+        <input type="hidden" name="attending" id="attendingValue" value="Joyfully accepts">
       </div>
-      <div class="form-row form-row--radio">
-        <span>Will you attend?</span>
-        <label><input type="radio" name="attending" value="Joyfully Accepts" checked> Joyfully Accepts</label>
-        <label><input type="radio" name="attending" value="Regretfully Declines"> Regretfully Declines</label>
-      </div>
+
       <div class="form-row">
-        <label for="guestCount">Number of Guests</label>
+        <label for="guestCount">Number of guests</label>
         <input type="number" id="guestCount" name="guests" min="1" max="6" value="1">
       </div>
-      <div class="form-row">
-        <label for="guestMessage">Message (optional)</label>
-        <textarea id="guestMessage" name="message" rows="3"></textarea>
-      </div>
-      <button type="submit" class="btn-gold">Send RSVP</button>
+
+      <button type="submit" class="btn-dark">RSVP</button>
       <p class="rsvp__success" id="rsvpSuccess" hidden>Thank you! Your RSVP has been recorded.</p>
     </form>
+
+    <a href="#countdown" class="rsvp__back">&lsaquo; Go Back</a>
   </section>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="site-footer__monogram">A&nbsp;&amp;&nbsp;J</div>
+    <div class="site-footer__monogram">B &amp; G</div>
     <p>With love and gratitude, we thank you for being part of our story.</p>
-    <p class="site-footer__hashtag">#AlexandraAndJames2027</p>
-    <p class="site-footer__copy">&copy; 2027 Alexandra &amp; James</p>
+    <p class="site-footer__copy">&copy; 2027 Groom &amp; Bride</p>
   </footer>
 
 </main>

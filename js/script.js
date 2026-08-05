@@ -38,15 +38,18 @@
     if (envelope.classList.contains("is-opening")) return;
     envelope.classList.add("is-opening");
     tapHint.style.opacity = "0";
-    setTimeout(revealSite, 1500);
+    setTimeout(revealSite, 1100);
   }
 
   if (prefersReducedMotion) {
     revealSite();
   } else {
     envelope.addEventListener("click", openEnvelope);
-    envelope.addEventListener("keypress", function (e) {
-      if (e.key === "Enter" || e.key === " ") openEnvelope();
+    envelope.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openEnvelope();
+      }
     });
     skipIntro.addEventListener("click", revealSite);
   }
@@ -134,6 +137,20 @@
      ========================================================= */
   var rsvpForm = document.getElementById("rsvpForm");
   var rsvpSuccess = document.getElementById("rsvpSuccess");
+  var attendingGroup = document.getElementById("attendingGroup");
+  var attendingValue = document.getElementById("attendingValue");
+
+  if (attendingGroup) {
+    attendingGroup.querySelectorAll(".pill").forEach(function (pill) {
+      pill.addEventListener("click", function () {
+        attendingGroup.querySelectorAll(".pill").forEach(function (p) {
+          p.classList.remove("is-active");
+        });
+        pill.classList.add("is-active");
+        attendingValue.value = pill.getAttribute("data-value");
+      });
+    });
+  }
 
   rsvpForm.addEventListener("submit", function (e) {
     // If `action` has been set to a real endpoint (e.g. Formspree),

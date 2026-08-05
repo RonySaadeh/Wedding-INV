@@ -146,6 +146,7 @@
   var rsvpForm = document.getElementById("rsvpForm");
   var rsvpSuccess = document.getElementById("rsvpSuccess");
   var whatsappFallback = document.getElementById("whatsappFallback");
+  var whatsappExtraLinks = document.getElementById("whatsappExtraLinks");
   var attendingGroup = document.getElementById("attendingGroup");
   var attendingValue = document.getElementById("attendingValue");
   var defaultAttendingValue = attendingValue ? attendingValue.value : "";
@@ -188,19 +189,33 @@
       return "https://wa.me/" + number + "?text=" + encodedMessage;
     });
 
-    // Open a WhatsApp chat per recipient, pre-filled with the RSVP details.
-    // The guest still has to tap Send inside WhatsApp — browsers don't
-    // allow sites to send WhatsApp messages silently.
-    links.forEach(function (url, i) {
-      setTimeout(function () {
-        window.open(url, "_blank");
-      }, i * 400);
-    });
+    // Mobile browsers (iOS Safari in particular) only allow a WhatsApp
+    // deep link to open if it happens synchronously inside the tap that
+    // triggered it — any setTimeout/async delay and it gets silently
+    // blocked. So the first (primary) number is opened immediately here,
+    // with a same-tab redirect as a fallback if the popup is blocked.
+    var primaryWindow = window.open(links[0], "_blank");
+    if (!primaryWindow) {
+      window.location.href = links[0];
+    }
 
-    // In case a popup blocker swallowed it, offer a manual link to the
-    // first recipient.
+    // Always show a manual link too, in case nothing above worked.
     whatsappFallback.href = links[0];
     whatsappFallback.hidden = false;
+
+    // Auto-opening more than one WhatsApp chat per tap isn't reliable on
+    // mobile, so any additional numbers get their own manual "tap to
+    // send" links instead of trying to force them open.
+    whatsappExtraLinks.innerHTML = "";
+    links.slice(1).forEach(function (url, i) {
+      var a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.className = "rsvp__whatsapp-fallback";
+      a.textContent = "Also send to recipient " + (i + 2);
+      whatsappExtraLinks.appendChild(a);
+    });
 
     rsvpSuccess.hidden = false;
     rsvpForm.reset();

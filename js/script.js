@@ -6,6 +6,14 @@
      ========================================================= */
   var CONFIG = {
     weddingDate: "2027-06-12T16:00:00", // used by the countdown timer
+
+    // RSVP responses are sent as a WhatsApp "click to chat" message to
+    // each number listed here. Numbers must be in international format,
+    // digits only (no "+", spaces, or leading zeros).
+    // Currently set to a single number for testing. To notify both of
+    // you, add a second number, e.g.:
+    // whatsappNumbers: ["96176532981", "961XXXXXXXX"]
+    whatsappNumbers: ["96176532981"],
   };
 
   var prefersReducedMotion = window.matchMedia(
@@ -137,19 +145,35 @@
      ========================================================= */
   var rsvpForm = document.getElementById("rsvpForm");
   var rsvpSuccess = document.getElementById("rsvpSuccess");
+  var whatsappFallback = document.getElementById("whatsappFallback");
   var attendingGroup = document.getElementById("attendingGroup");
   var attendingValue = document.getElementById("attendingValue");
+  var defaultAttendingValue = attendingValue ? attendingValue.value : "";
+
+  function setActivePill(value) {
+    attendingGroup.querySelectorAll(".pill").forEach(function (p) {
+      p.classList.toggle("is-active", p.getAttribute("data-value") === value);
+    });
+  }
 
   if (attendingGroup) {
     attendingGroup.querySelectorAll(".pill").forEach(function (pill) {
       pill.addEventListener("click", function () {
-        attendingGroup.querySelectorAll(".pill").forEach(function (p) {
-          p.classList.remove("is-active");
-        });
-        pill.classList.add("is-active");
+        setActivePill(pill.getAttribute("data-value"));
         attendingValue.value = pill.getAttribute("data-value");
       });
     });
+  }
+
+  function buildWhatsAppMessage() {
+    var name = document.getElementById("guestName").value.trim();
+    var guests = document.getElementById("guestCount").value;
+    return (
+      "New RSVP\n" +
+      "Name: " + name + "\n" +
+      "Attending: " + attendingValue.value + "\n" +
+      "Guests: " + guests
+    );
   }
 
   rsvpForm.addEventListener("submit", function (e) {
@@ -158,7 +182,29 @@
     if (rsvpForm.getAttribute("action")) return;
 
     e.preventDefault();
+
+    var encodedMessage = encodeURIComponent(buildWhatsAppMessage());
+    var links = CONFIG.whatsappNumbers.map(function (number) {
+      return "https://wa.me/" + number + "?text=" + encodedMessage;
+    });
+
+    // Open a WhatsApp chat per recipient, pre-filled with the RSVP details.
+    // The guest still has to tap Send inside WhatsApp — browsers don't
+    // allow sites to send WhatsApp messages silently.
+    links.forEach(function (url, i) {
+      setTimeout(function () {
+        window.open(url, "_blank");
+      }, i * 400);
+    });
+
+    // In case a popup blocker swallowed it, offer a manual link to the
+    // first recipient.
+    whatsappFallback.href = links[0];
+    whatsappFallback.hidden = false;
+
     rsvpSuccess.hidden = false;
     rsvpForm.reset();
+    setActivePill(defaultAttendingValue);
+    attendingValue.value = defaultAttendingValue;
   });
 })();

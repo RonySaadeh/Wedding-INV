@@ -28,8 +28,6 @@
 
 <!-- ================= ENVELOPE INTRO ================= -->
 <div class="envelope-overlay" id="envelopeOverlay">
-  <span class="lace-corner lace-corner--tl" aria-hidden="true"></span>
-  <span class="lace-corner lace-corner--br" aria-hidden="true"></span>
   <button class="skip-intro" id="skipIntro" type="button">Skip intro</button>
 
   <div class="envelope-stage">
@@ -39,16 +37,8 @@
     </p>
 
     <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
-      <div class="envelope__body"></div>
-      <svg class="envelope__flap" viewBox="0 0 400 166" preserveAspectRatio="none" aria-hidden="true">
-        <path class="envelope__lace" d="M0,8.0 Q22.1,13.3 33.3,33.0 Q55.4,38.3 66.7,58.0 Q88.7,63.3 100.0,83.0 Q122.1,88.3 133.3,108.0 Q155.4,113.3 166.7,133.0 Q188.7,138.3 200.0,158.0 Q211.3,138.3 233.3,133.0 Q244.6,113.3 266.7,108.0 Q277.9,88.3 300.0,83.0 Q311.3,63.3 333.3,58.0 Q344.6,38.3 366.7,33.0 Q377.9,13.3 400.0,8.0 L0,8.0 Z"/>
-        <g class="envelope__lace-dots" fill="#fffdf8">
-          <circle cx="22.1" cy="13.3" r="3.4"/><circle cx="55.4" cy="38.3" r="3.4"/><circle cx="88.7" cy="63.3" r="3.4"/><circle cx="122.1" cy="88.3" r="3.4"/><circle cx="155.4" cy="113.3" r="3.4"/><circle cx="188.7" cy="138.3" r="3.4"/>
-          <circle cx="377.9" cy="13.3" r="3.4"/><circle cx="344.6" cy="38.3" r="3.4"/><circle cx="311.3" cy="63.3" r="3.4"/><circle cx="277.9" cy="88.3" r="3.4"/><circle cx="244.6" cy="113.3" r="3.4"/><circle cx="211.3" cy="138.3" r="3.4"/>
-        </g>
-        <path class="envelope__paper" d="M0,8 L400,8 L200,146 Z"/>
-        <text class="envelope__monogram" x="200" y="102" text-anchor="middle">B &amp; G</text>
-      </svg>
+      <img class="envelope__img envelope__img--closed" src="assets/envelope-closed.webp" alt="Sealed wedding invitation envelope">
+      <img class="envelope__img envelope__img--open" src="assets/envelope-open.webp" alt="">
     </div>
 
     <p class="tap-hint" id="tapHint">Open Invitation</p>
@@ -122,7 +112,7 @@
 
   <!-- COUNTDOWN -->
   <section class="countdown" id="countdown">
-    <div class="countdown__photo reveal"><span>Add Photo</span></div>
+    <img class="countdown__photo reveal" src="assets/photo-frame.webp" alt="Groom and Bride">
     <p class="countdown__script reveal">Our forever begins in</p>
     <div class="countdown__clock reveal" id="clock">
       <span id="cd-days">00</span><i>:</i><span id="cd-hours">00</span><i>:</i><span id="cd-mins">00</span><i>:</i><span id="cd-secs">00</span>
@@ -134,23 +124,11 @@
 
   <!-- RSVP TEASER ENVELOPE -->
   <section class="rsvp-teaser">
-    <span class="lace-corner lace-corner--tl" aria-hidden="true"></span>
-    <span class="lace-corner lace-corner--br" aria-hidden="true"></span>
     <a href="#rsvp" class="teaser-envelope reveal" aria-label="Go to RSVP form">
-      <svg class="teaser-envelope__flap" viewBox="0 0 400 166" preserveAspectRatio="none" aria-hidden="true">
-        <path class="envelope__lace" d="M0,8.0 Q22.1,13.3 33.3,33.0 Q55.4,38.3 66.7,58.0 Q88.7,63.3 100.0,83.0 Q122.1,88.3 133.3,108.0 Q155.4,113.3 166.7,133.0 Q188.7,138.3 200.0,158.0 Q211.3,138.3 233.3,133.0 Q244.6,113.3 266.7,108.0 Q277.9,88.3 300.0,83.0 Q311.3,63.3 333.3,58.0 Q344.6,38.3 366.7,33.0 Q377.9,13.3 400.0,8.0 L0,8.0 Z"/>
-        <g class="envelope__lace-dots" fill="#fffdf8">
-          <circle cx="22.1" cy="13.3" r="3.4"/><circle cx="55.4" cy="38.3" r="3.4"/><circle cx="88.7" cy="63.3" r="3.4"/><circle cx="122.1" cy="88.3" r="3.4"/><circle cx="155.4" cy="113.3" r="3.4"/><circle cx="188.7" cy="138.3" r="3.4"/>
-          <circle cx="377.9" cy="13.3" r="3.4"/><circle cx="344.6" cy="38.3" r="3.4"/><circle cx="311.3" cy="63.3" r="3.4"/><circle cx="277.9" cy="88.3" r="3.4"/><circle cx="244.6" cy="113.3" r="3.4"/><circle cx="211.3" cy="138.3" r="3.4"/>
-        </g>
-        <path class="envelope__paper" d="M0,8 L400,8 L200,146 Z"/>
-      </svg>
-      <div class="teaser-envelope__body">
-        <div class="teaser-envelope__card">
-          <p class="teaser-envelope__script">Kindly Rsvp</p>
-          <p class="teaser-envelope__cta">Click Here</p>
-        </div>
-        <p class="teaser-envelope__monogram">B &amp; G</p>
+      <img class="teaser-envelope__img" src="assets/envelope-open.webp" alt="Open envelope">
+      <div class="teaser-envelope__card">
+        <p class="teaser-envelope__script">Kindly Rsvp</p>
+        <p class="teaser-envelope__cta">Click Here</p>
       </div>
     </a>
   </section>

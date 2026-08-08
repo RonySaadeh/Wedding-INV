@@ -1,6 +1,6 @@
 # Bride & Groom — Wedding Invitation Website
 
-A luxurious, single-page wedding invitation site with a **lace-trimmed envelope intro**: an ivory envelope with a scalloped lace edge and a script monogram opens on tap, revealing a formal invitation, countdown, and RSVP flow underneath.
+A luxurious, single-page wedding invitation site with a **lace-trimmed envelope intro**: a real envelope graphic with a scalloped lace edge and a gold wax seal opens on tap, revealing a formal invitation, countdown, and RSVP flow underneath — all built from your own asset pack.
 
 No build step, no dependencies — plain HTML/CSS/JS, ready to host on GitHub Pages, Netlify, or any static host.
 
@@ -8,9 +8,24 @@ No build step, no dependencies — plain HTML/CSS/JS, ready to host on GitHub Pa
 
 ```
 index.html      All page content and sections
-css/style.css   All styling (colors, fonts, envelope/lace SVG, layout)
+css/style.css   All styling (colors, fonts, layout, image-based envelope)
 js/script.js    Envelope animation logic, countdown timer, scroll reveals, RSVP form
+assets/         Image assets (see below)
 ```
+
+## Assets
+
+These come from the "Website Assets" pack you provided, cropped and compressed to WebP for the web (originals were ~55MB total; these are ~310KB combined):
+
+- `envelope-closed.webp` — the sealed envelope shown on load
+- `envelope-open.webp` — crossfades in when the envelope is tapped, and reused for the RSVP teaser section
+- `photo-frame.webp` — the gold oval frame, used in the countdown section
+- `bg-texture.webp` — the paisley/damask texture tiled as the page background
+- `lace-trim.webp` — a standalone lace crop, currently unused but available if you want it as a decorative accent elsewhere
+
+**Two things worth knowing about these assets:**
+1. The wax seal is baked into the envelope images with the initials **"WJ"** — since it's a flat graphic, that can't be changed with text/CSS. If your initials are different, you'd need a re-exported version of that asset with your own monogram (from wherever this pack came from), or a replacement graphic.
+2. The couple photo in the gold frame — if that's not actually you two, swap `assets/photo-frame.webp` for your own photo. Since the frame and photo are one flat image, you'd need your photo composited into a matching gold-frame graphic (e.g. back in Canva) rather than just dropping in a new file of a different shape.
 
 ## Page flow
 
@@ -27,9 +42,8 @@ js/script.js    Envelope animation logic, countdown timer, scroll reveals, RSVP 
 3. **Parents' names & wording** — edit `.invitation__parents` and `.invitation__request` in the `#invitation` section.
 4. **Ceremony / reception details** — update venue names, times, and addresses in the two `.invitation__event` blocks.
 5. **Registry note** — edit or delete `.invitation__registry`.
-6. **Photo** — replace the `.countdown__photo` placeholder `<div>` with a real `<img>` (keep the oval shape by applying the same `border-radius`, or adjust it).
+6. **Photo** — see the Assets section above; replacing it means swapping `assets/photo-frame.webp` for a new composited frame+photo graphic.
 7. **Colors & fonts** — all defined as CSS variables at the top of `css/style.css` (`--cream`, `--taupe`, `--brown`, fonts, etc.), so you can retheme the whole site by changing a handful of values.
-8. **Lace texture** — the corner lace ornament (`.lace-corner`) and the envelope's scalloped edge (the `.envelope__lace` SVG path) are CSS/SVG approximations of a lace trim, not a traced image. If you have a real lace texture/PNG you like better, swap `.lace-corner`'s background for `background-image: url(...)`.
 
 ## Making the RSVP form actually work
 

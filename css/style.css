@@ -23,14 +23,27 @@
 html{ scroll-behavior: smooth; }
 body{
   margin:0;
-  background: var(--cream) url('../assets/bg-texture.webp') top center/900px auto repeat-y;
+  background: var(--cream);
   color: var(--ink);
   font-family: var(--font-serif);
   font-size: 18px;
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 body.no-scroll{ overflow: hidden; height: 100%; }
+/* Fixed, viewport-covering background layer — kept as a pseudo-element
+   (rather than `background-attachment: fixed` on body) so it sizes
+   against the viewport instead of the full scrollable page height, and
+   avoids old iOS Safari quirks with fixed backgrounds on scrolling
+   elements. */
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('../assets/bg-texture.webp') center/cover no-repeat;
+}
 
 h1,h2{ margin: 0; font-weight: 500; }
 a{ color: inherit; text-decoration: none; }
@@ -112,7 +125,7 @@ a{ color: inherit; text-decoration: none; }
 .envelope{
   position: relative;
   width: min(80vw, 340px);
-  aspect-ratio: 700 / 1034;
+  aspect-ratio: 700 / 494;
   cursor: pointer;
 }
 .envelope__img{
@@ -123,17 +136,12 @@ a{ color: inherit; text-decoration: none; }
   object-fit: contain;
   object-position: center top;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,.25));
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
-.envelope__img--closed{
-  opacity: 1;
-  transition: opacity .5s var(--ease) .2s;
-}
-.envelope__img--open{
+.envelope.is-opening .envelope__img--closed{
   opacity: 0;
-  transition: opacity .7s var(--ease);
+  transform: scale(.92);
 }
-.envelope.is-opening .envelope__img--open{ opacity: 1; }
-.envelope.is-opening .envelope__img--closed{ opacity: 0; }
 
 .tap-hint{
   color: var(--brown-deep);

@@ -11,11 +11,9 @@
      1. Replace "Bride" / "Groom" and "B & G" everywhere with your
         real names and monogram initials.
      2. Edit js/script.js -> CONFIG object (wedding date).
-     3. Update the Invitation section: parents' names, ceremony &
-        reception venues/times, registry note.
-     4. Replace the oval photo placeholder in #countdown with a
-        real <img>.
-     5. Point the RSVP form's `action` at your own Formspree (or
+     3. Update the Invitation section: ceremony & reception
+        venues/times, registry note.
+     4. Point the RSVP form's `action` at your own Formspree (or
         Google Form) endpoint — see the comment above the <form>.
      ============================================================ -->
 
@@ -47,14 +45,9 @@
 <!-- ================= SITE NAV ================= -->
 <header class="site-nav" id="siteNav">
   <a href="#top" class="site-nav__brand">B &amp; G</a>
-  <button class="site-nav__toggle" id="navToggle" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-  <nav class="site-nav__links" id="navLinks">
-    <a href="#invitation">Invitation</a>
-    <a href="#countdown">Countdown</a>
-    <a href="#rsvp">RSVP</a>
-  </nav>
+  <div class="site-nav__countdown" id="clock">
+    <span id="cd-days">00</span><i>:</i><span id="cd-hours">00</span><i>:</i><span id="cd-mins">00</span><i>:</i><span id="cd-secs">00</span>
+  </div>
 </header>
 
 <!-- ================= MAIN CONTENT ================= -->
@@ -97,18 +90,6 @@
     </div>
 
     <p class="invitation__registry reveal">For those who wish, a wedding registry<br>is available at Your Bank Name.<br><a href="#">0000-0000-00</a></p>
-  </section>
-
-  <!-- COUNTDOWN -->
-  <section class="countdown" id="countdown">
-    <img class="countdown__photo reveal" src="assets/photo-frame.webp" alt="Groom and Bride">
-    <p class="countdown__script reveal">Our forever begins in</p>
-    <div class="countdown__clock reveal" id="clock">
-      <span id="cd-days">00</span><i>:</i><span id="cd-hours">00</span><i>:</i><span id="cd-mins">00</span><i>:</i><span id="cd-secs">00</span>
-    </div>
-    <div class="countdown__labels reveal">
-      <small>Days</small><small>Hours</small><small>Minutes</small><small>Seconds</small>
-    </div>
   </section>
 
   <!-- RSVP TEASER ENVELOPE -->
@@ -168,7 +149,7 @@
       <div id="whatsappExtraLinks"></div>
     </form>
 
-    <a href="#countdown" class="rsvp__back">&lsaquo; Go Back</a>
+    <a href="#top" class="rsvp__back">&lsaquo; Go Back</a>
   </section>
 
   <!-- FOOTER -->

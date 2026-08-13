@@ -19,7 +19,7 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 
 - `envelope-closed.webp` — the sealed envelope shown on load
 - `envelope-open.webp` — crossfades in when the envelope is tapped, and reused for the RSVP teaser section
-- `photo-frame.webp` — the gold oval frame, used in the countdown section
+- `photo-frame.webp` — the gold oval frame with your couple photo, shown at the top of the invitation section
 - `bg-texture.webp` — the paisley/damask texture tiled as the page background
 - `lace-trim.webp` — a standalone lace crop, currently unused but available if you want it as a decorative accent elsewhere
 
@@ -30,20 +30,19 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 ## Page flow
 
 1. **Envelope intro** — a Bible/love quote, a lace-trimmed envelope with your monogram. Tap to open.
-2. **Invitation** — parents' names, formal wording, your names in script, date, ceremony & reception details (with a candle icon), and an optional registry note.
-3. **Countdown** — an oval engagement photo placeholder and a live countdown to the big day.
+2. **Header** — your monogram plus a live countdown to the big day, fixed at the top of every page as you scroll. There's no navigation menu — the header is informational only.
+3. **Invitation** — your gold-framed couple photo, names in script, date, ceremony & reception details (with a candle icon), and an optional registry note.
 4. **RSVP teaser** — a second lace envelope, opened, with a "Kindly RSVP — Click Here" card that scrolls down to the form.
 5. **RSVP form** — name, attendance (pill buttons), guest count, and a submit button.
 
 ## Customize it
 
 1. **Names & monogram** — find/replace "Groom", "Bride" and "B & G" throughout `index.html`.
-2. **Countdown date** — open `js/script.js` and edit `CONFIG.weddingDate` at the top.
-3. **Parents' names & wording** — edit `.invitation__parents` and `.invitation__request` in the `#invitation` section.
-4. **Ceremony / reception details** — update venue names, times, and addresses in the two `.invitation__event` blocks.
-5. **Registry note** — edit or delete `.invitation__registry`.
-6. **Photo** — see the Assets section above; replacing it means swapping `assets/photo-frame.webp` for a new composited frame+photo graphic.
-7. **Colors & fonts** — all defined as CSS variables at the top of `css/style.css` (`--cream`, `--taupe`, `--brown`, fonts, etc.), so you can retheme the whole site by changing a handful of values.
+2. **Countdown date** — open `js/script.js` and edit `CONFIG.weddingDate` at the top. The countdown itself lives in the `<header class="site-nav">` block in `index.html` (`.site-nav__countdown`).
+3. **Ceremony / reception details** — update venue names, times, and addresses in the two `.invitation__event` blocks.
+4. **Registry note** — edit or delete `.invitation__registry`.
+5. **Photo** — see the Assets section above; replacing it means swapping `assets/photo-frame.webp` for a new composited frame+photo graphic.
+6. **Colors & fonts** — all defined as CSS variables at the top of `css/style.css` (`--cream`, `--taupe`, `--brown`, fonts, etc.), so you can retheme the whole site by changing a handful of values.
 
 ## Making the RSVP form actually work
 

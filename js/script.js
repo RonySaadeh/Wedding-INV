@@ -63,23 +63,10 @@
   }
 
   /* =========================================================
-     Nav: scrolled state + mobile toggle
+     Nav: scrolled state
      ========================================================= */
-  var navToggle = document.getElementById("navToggle");
-  var navLinks = document.getElementById("navLinks");
-
   window.addEventListener("scroll", function () {
     siteNav.classList.toggle("is-scrolled", window.scrollY > 40);
-  });
-
-  navToggle.addEventListener("click", function () {
-    navLinks.classList.toggle("is-open");
-  });
-
-  navLinks.querySelectorAll("a").forEach(function (link) {
-    link.addEventListener("click", function () {
-      navLinks.classList.remove("is-open");
-    });
   });
 
   /* =========================================================

@@ -180,49 +180,17 @@ a{ color: inherit; text-decoration: none; }
   font-size: 1.6rem;
   color: var(--brown);
 }
-.site-nav__links{ display:flex; gap: 2.2rem; }
-.site-nav__links a{
-  font-size: .78rem;
-  text-transform: uppercase;
-  letter-spacing: .14em;
-  color: var(--ink);
-  position: relative;
-  padding-bottom: 4px;
+.site-nav__countdown{
+  display:flex;
+  align-items:baseline;
+  gap: .1em;
+  font-family: var(--font-serif);
+  color: var(--brown);
+  font-size: clamp(.8rem, 3vw, 1.1rem);
+  letter-spacing: .02em;
+  white-space: nowrap;
 }
-.site-nav__links a::after{
-  content:"";
-  position:absolute; left:0; bottom:0; width:0; height:1px;
-  background: var(--brown);
-  transition: width .3s var(--ease);
-}
-.site-nav__links a:hover::after{ width:100%; }
-
-.site-nav__toggle{
-  display:none;
-  flex-direction:column;
-  gap:5px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  padding: 6px;
-}
-.site-nav__toggle span{ width: 24px; height: 1px; background: var(--ink); }
-
-@media (max-width: 720px){
-  .site-nav__toggle{ display:flex; }
-  .site-nav__links{
-    position: absolute;
-    top: 100%; right: 6vw;
-    background: var(--cream);
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.4rem 1.8rem;
-    box-shadow: 0 12px 30px rgba(0,0,0,.12);
-    border-radius: 6px;
-    display: none;
-  }
-  .site-nav__links.is-open{ display:flex; }
-}
+.site-nav__countdown i{ font-style:normal; opacity:.5; padding: 0 .12em; }
 
 /* =========================================================
    INVITATION
@@ -286,44 +254,6 @@ a{ color: inherit; text-decoration: none; }
   line-height: 1.6;
 }
 .invitation__registry a{ text-decoration: underline; }
-
-/* =========================================================
-   COUNTDOWN
-   ========================================================= */
-.countdown{
-  padding: 6rem 6vw;
-  text-align:center;
-}
-.countdown__photo{
-  width: min(60vw, 260px);
-  height: auto;
-  margin: 0 auto 2.4rem;
-  filter: drop-shadow(0 20px 30px rgba(0,0,0,.2));
-}
-.countdown__script{
-  font-family: var(--font-script);
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  color: var(--brown);
-  margin-bottom: .6rem;
-}
-.countdown__clock{
-  font-size: clamp(2.2rem, 6vw, 3.2rem);
-  color: var(--brown);
-  letter-spacing: .02em;
-}
-.countdown__clock i{ font-style: normal; opacity: .5; padding: 0 .15em; }
-.countdown__labels{
-  display:flex;
-  justify-content:center;
-  gap: clamp(1.4rem, 6vw, 3.4rem);
-  margin-top: .6rem;
-}
-.countdown__labels small{
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  font-size: .7rem;
-  color: var(--brown-deep);
-}
 
 /* =========================================================
    RSVP TEASER ENVELOPE

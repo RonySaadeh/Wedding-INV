@@ -182,15 +182,25 @@ a{ color: inherit; text-decoration: none; }
 }
 .site-nav__countdown{
   display:flex;
-  align-items:baseline;
-  gap: .1em;
-  font-family: var(--font-serif);
-  color: var(--brown);
-  font-size: clamp(.8rem, 3vw, 1.1rem);
-  letter-spacing: .02em;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .15em;
   white-space: nowrap;
 }
-.site-nav__countdown i{ font-style:normal; opacity:.5; padding: 0 .12em; }
+.site-nav__countdown-label{
+  font-style: italic;
+  font-size: clamp(.62rem, 1.8vw, .8rem);
+  letter-spacing: .06em;
+  color: var(--brown-deep);
+}
+.site-nav__countdown-time{
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--brown);
+  font-size: clamp(.85rem, 3vw, 1.15rem);
+  letter-spacing: .03em;
+}
+.site-nav__countdown-time i{ font-style:normal; opacity:.5; padding: 0 .12em; }
 
 /* =========================================================
    INVITATION

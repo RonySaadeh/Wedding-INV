@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=30">
+<link rel="stylesheet" href="css/style.css?v=31">
 </head>
 <body>
 
@@ -43,12 +43,11 @@
 <div class="envelope-overlay" id="envelopeOverlay">
   <button class="skip-intro" id="skipIntro" type="button">Skip intro</button>
 
-  <div class="envelope-stage">
-    <p class="envelope-quote">&ldquo;In every lifetime, I will choose you&rdquo;</p>
+  <img class="envelope-overlay__lace" src="assets/lace-trim.webp" alt="">
 
+  <div class="envelope-stage">
     <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
-      <img class="envelope__img envelope__img--closed envelope__lace" src="assets/lace-trim.webp" alt="Sealed wedding invitation envelope">
-      <img class="envelope__img envelope__img--closed envelope__seal" src="assets/stamp-seal.webp" alt="">
+      <img class="envelope__seal" src="assets/stamp-seal.webp" alt="Sealed wedding invitation envelope">
     </div>
 
     <p class="tap-hint" id="tapHint">Open Invitation</p>

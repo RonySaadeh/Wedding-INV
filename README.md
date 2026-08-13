@@ -23,8 +23,8 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 - `envelope-open.webp` — crossfades in when the envelope is tapped, and reused for the RSVP teaser section
 - `photo-frame.webp` — the gold oval frame with your couple photo, shown at the top of the invitation section
 - `bg-texture.webp` — the paisley/damask texture tiled as the page background
-- `lace-trim.webp` — the lace flap shown on the intro screen, tapped to open the invitation
-- `stamp-seal.webp` — the gold "WJ" wax-seal graphic layered on top of the lace flap on the intro screen
+- `lace-trim.webp` — fills the entire intro screen as the background, cropped to cover whatever size/shape the visitor's viewport is
+- `stamp-seal.webp` — the gold "WJ" wax-seal graphic layered on top of the lace, tapped to open the invitation
 - `swan-heart-motif.svg` — small two-swans-forming-a-heart motif above Ceremony, colored to match the site's brown palette (`#6b4630`)
 - `cheers-glasses.svg` — clinking champagne glasses icon shown under "Click Here" on the RSVP teaser envelope
 - `candelabra.svg` — three-candle candelabra motif above Reception to Follow, same brown color
@@ -35,7 +35,7 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 
 ## Page flow
 
-1. **Envelope intro** — a Bible/love quote, a lace-trimmed envelope with your monogram. Tap to open, which also starts the entrance song (`assets/entrance-song.mp3`, looping); a small mute button appears bottom-right once it's playing so guests can turn it off. Browsers only allow audio to autoplay off a real tap/click, so this deliberately doesn't try to play automatically for visitors with "reduce motion" enabled, since they skip straight past the tap.
+1. **Envelope intro** — a full-page lace background (`assets/lace-trim.webp`) with your gold "WJ" wax seal and "Open Invitation" over it, nothing else. Tap anywhere on the seal to open, which also starts the entrance song (`assets/entrance-song.mp3`, looping); a small mute button appears bottom-right once it's playing so guests can turn it off. Browsers only allow audio to autoplay off a real tap/click, so this deliberately doesn't try to play automatically for visitors with "reduce motion" enabled, since they skip straight past the tap.
 2. **Header** — your monogram plus a live countdown to the big day, fixed at the top of every page as you scroll. There's no navigation menu — the header is informational only.
 3. **Invitation** — a short quote, your gold-framed couple photo, "Together With Their Families," names in script, the formal request line, date, ceremony & reception details (swan-heart motif above Ceremony/RSVP, candelabra above Reception), and an optional registry note.
 4. **RSVP teaser** — a second lace envelope, opened, with a "Kindly RSVP — Click Here" card that scrolls down to the form.

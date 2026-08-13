@@ -96,17 +96,22 @@ a{ color: inherit; text-decoration: none; }
   position: fixed;
   inset: 0;
   z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  background: var(--cream) url('../assets/bg-texture.webp') center/cover no-repeat;
+  background: var(--cream);
   transition: opacity 1s var(--ease), visibility 1s;
 }
 .envelope-overlay.is-hidden{
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+}
+.envelope-overlay__lace{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .skip-intro{
@@ -128,57 +133,31 @@ a{ color: inherit; text-decoration: none; }
 .skip-intro:hover{ background: rgba(107,70,48,.08); }
 
 .envelope-stage{
-  position: relative;
+  position: absolute;
   z-index: 1;
+  left: 50%;
+  top: 47%;
+  transform: translate(-50%, -50%);
   display:flex;
   flex-direction: column;
   align-items: center;
-  gap: 34px;
-  padding: 0 8vw;
-}
-
-.envelope-quote{
-  text-align:center;
-  color: var(--ink);
-  font-style: italic;
-  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
-  letter-spacing: .04em;
-  max-width: 640px;
-  line-height: 1.5;
+  gap: 18px;
 }
 
 .envelope{
-  position: relative;
-  width: min(80vw, 340px);
-  aspect-ratio: 500 / 370;
+  width: min(22vw, 92px);
   cursor: pointer;
 }
-.envelope__img{
-  position: absolute;
-  object-fit: contain;
+.envelope__seal{
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.3));
   transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
-.envelope__lace{
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-position: center top;
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,.25));
-}
-.envelope__seal{
-  width: 24%;
-  height: auto;
-  left: 50%;
-  top: 44%;
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,.3));
-}
-.envelope.is-opening .envelope__img--closed{
-  opacity: 0;
-  transform: scale(.92);
-}
 .envelope.is-opening .envelope__seal{
-  transform: translate(-50%, -50%) scale(.92);
+  opacity: 0;
+  transform: scale(.85);
 }
 
 .tap-hint{

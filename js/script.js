@@ -7,13 +7,17 @@
   var CONFIG = {
     weddingDate: "2026-10-10T16:00:00", // used by the countdown timer
 
-    // RSVP responses are sent as a WhatsApp "click to chat" message to
-    // each number listed here. Numbers must be in international format,
-    // digits only (no "+", spaces, or leading zeros).
-    // Currently set to a single number for testing. To notify both of
-    // you, add a second number, e.g.:
-    // whatsappNumbers: ["96176532981", "961XXXXXXXX"]
-    whatsappNumbers: ["96176532981"],
+    // RSVP responses are logged to a Google Sheet via a Google Apps
+    // Script Web App. Set this to your deployment's /exec URL — see
+    // google-apps-script/Code.gs and the README for setup steps.
+    // Left empty, RSVP submissions just show the local "Thank you"
+    // message without recording anywhere.
+    rsvpEndpoint: "",
+
+    // WhatsApp number offered to a guest whose name isn't found on the
+    // guest list, so they can reach out directly. International
+    // format, digits only (no "+", spaces, or leading zeros).
+    contactWhatsApp: "96176532981",
   };
 
   var prefersReducedMotion = window.matchMedia(
@@ -161,8 +165,7 @@
      ========================================================= */
   var rsvpForm = document.getElementById("rsvpForm");
   var rsvpSuccess = document.getElementById("rsvpSuccess");
-  var whatsappFallback = document.getElementById("whatsappFallback");
-  var whatsappExtraLinks = document.getElementById("whatsappExtraLinks");
+  var rsvpError = document.getElementById("rsvpError");
 
   var guestSearchStep = document.getElementById("rsvpSearchStep");
   var guestSearchInput = document.getElementById("guestSearch");
@@ -270,7 +273,7 @@
       showSearchMessage(
         "We couldn't find that name on our guest list. Please double-check the spelling, or " +
           '<a href="https://wa.me/' +
-          CONFIG.whatsappNumbers[0] +
+          CONFIG.contactWhatsApp +
           '" target="_blank" rel="noopener">message us on WhatsApp</a> so we can help.'
       );
     } else if (matches.length === 1) {
@@ -305,11 +308,10 @@
     guestSearchInput.value = "";
     guestSearchInput.focus();
     rsvpSuccess.hidden = true;
-    whatsappFallback.hidden = true;
-    whatsappExtraLinks.innerHTML = "";
+    rsvpError.hidden = true;
   });
 
-  function buildWhatsAppMessage() {
+  function buildRsvpPayload() {
     var checkboxes = rsvpPartyList.querySelectorAll("input[type=checkbox]");
     var attending = [];
     var declined = [];
@@ -317,12 +319,11 @@
       (cb.checked ? attending : declined).push(cb.dataset.name);
     });
 
-    var lines = ["New RSVP", "Party: " + rsvpPartyLabel.textContent];
-    lines.push("Attending: " + (attending.length ? attending.join(", ") : "None"));
-    if (declined.length) {
-      lines.push("Not attending: " + declined.join(", "));
-    }
-    return lines.join("\n");
+    return {
+      party: rsvpPartyLabel.textContent,
+      attending: attending,
+      declined: declined,
+    };
   }
 
   rsvpForm.addEventListener("submit", function (e) {
@@ -331,40 +332,33 @@
     if (rsvpForm.getAttribute("action")) return;
 
     e.preventDefault();
+    rsvpError.hidden = true;
 
-    var encodedMessage = encodeURIComponent(buildWhatsAppMessage());
-    var links = CONFIG.whatsappNumbers.map(function (number) {
-      return "https://wa.me/" + number + "?text=" + encodedMessage;
-    });
-
-    // Mobile browsers (iOS Safari in particular) only allow a WhatsApp
-    // deep link to open if it happens synchronously inside the tap that
-    // triggered it — any setTimeout/async delay and it gets silently
-    // blocked. So the first (primary) number is opened immediately here,
-    // with a same-tab redirect as a fallback if the popup is blocked.
-    var primaryWindow = window.open(links[0], "_blank");
-    if (!primaryWindow) {
-      window.location.href = links[0];
+    if (!CONFIG.rsvpEndpoint) {
+      // Not configured yet — nothing to send to, just confirm locally.
+      rsvpSuccess.hidden = false;
+      return;
     }
 
-    // Always show a manual link too, in case nothing above worked.
-    whatsappFallback.href = links[0];
-    whatsappFallback.hidden = false;
-
-    // Auto-opening more than one WhatsApp chat per tap isn't reliable on
-    // mobile, so any additional numbers get their own manual "tap to
-    // send" links instead of trying to force them open.
-    whatsappExtraLinks.innerHTML = "";
-    links.slice(1).forEach(function (url, i) {
-      var a = document.createElement("a");
-      a.href = url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.className = "rsvp__whatsapp-fallback";
-      a.textContent = "Also send to recipient " + (i + 2);
-      whatsappExtraLinks.appendChild(a);
-    });
-
-    rsvpSuccess.hidden = false;
+    // Google Apps Script Web Apps don't handle CORS preflight requests,
+    // so this uses Content-Type: text/plain to keep it a "simple"
+    // request (no preflight) and mode: "no-cors" since Apps Script's
+    // response usually can't be read cross-origin anyway. That means
+    // we can't actually confirm the row was written from here — a
+    // network-level failure still surfaces via .catch(), but a script
+    // error on Google's side would not. Worth spot-checking the sheet
+    // after a few real submissions.
+    fetch(CONFIG.rsvpEndpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify(buildRsvpPayload()),
+    })
+      .then(function () {
+        rsvpSuccess.hidden = false;
+      })
+      .catch(function () {
+        rsvpError.hidden = false;
+      });
   });
 })();

@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=23">
+<link rel="stylesheet" href="css/style.css?v=24">
 </head>
 <body>
 
@@ -112,10 +112,9 @@
     <p class="rsvp__deadline reveal">Please reply by September 1st, 2026</p>
 
     <!--
-      GUEST-LIST SEARCH (experimental, on branch feature/guest-list-rsvp):
-      data/guests.json is currently SAMPLE data for testing the flow.
-      Replace it with the real guest list (converted from the Excel
-      file) before this branch is merged. See README for the format.
+      GUEST-LIST SEARCH: data/guests.json currently holds SAMPLE data
+      for testing. Replace it with the real guest list before sending
+      this site to real guests — see the README for the format.
     -->
     <div class="rsvp__search reveal" id="rsvpSearchStep">
       <div class="form-row">
@@ -128,9 +127,13 @@
     </div>
 
     <!--
-      This form currently only shows a confirmation message locally (see js/script.js).
-      To actually receive responses, sign up free at https://formspree.io,
-      create a form, and set the action below to your endpoint, e.g.:
+      Submissions are logged to a Google Sheet — set CONFIG.rsvpEndpoint
+      in js/script.js to your Apps Script Web App URL (see
+      google-apps-script/Code.gs and the README). Left unset, this just
+      shows a local "Thank you" without recording anywhere.
+
+      Alternatively, point this form at Formspree/Google Forms instead
+      by adding an `action` attribute, e.g.:
       <form id="rsvpForm" action="https://formspree.io/f/xxxxxxx" method="POST">
     -->
     <form class="rsvp__form" id="rsvpForm" hidden>
@@ -139,9 +142,8 @@
       <div class="rsvp__party-list" id="rsvpPartyList"></div>
 
       <button type="submit" class="btn-dark">RSVP</button>
-      <p class="rsvp__success" id="rsvpSuccess" hidden>Thank you! We've opened WhatsApp with your details — just tap Send there to let us know.</p>
-      <a class="rsvp__whatsapp-fallback" id="whatsappFallback" href="#" target="_blank" rel="noopener" hidden>Didn't open? Tap here to send via WhatsApp</a>
-      <div id="whatsappExtraLinks"></div>
+      <p class="rsvp__success" id="rsvpSuccess" hidden>Thank you! Your RSVP has been recorded.</p>
+      <p class="rsvp__error" id="rsvpError" hidden>Something went wrong sending your RSVP. Please try again, or message us on WhatsApp directly.</p>
 
       <button type="button" class="rsvp__change-search" id="rsvpChangeSearch">Not you? Search again</button>
     </form>
@@ -158,6 +160,6 @@
 
 </main>
 
-<script src="js/script.js?v=23"></script>
+<script src="js/script.js?v=24"></script>
 </body>
 </html>

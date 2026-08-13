@@ -7,10 +7,12 @@ No build step, no dependencies — plain HTML/CSS/JS, ready to host on GitHub Pa
 ## Structure
 
 ```
-index.html      All page content and sections
-css/style.css   All styling (colors, fonts, layout, image-based envelope)
-js/script.js    Envelope animation logic, countdown timer, scroll reveals, RSVP form
-assets/         Image assets (see below)
+index.html                    All page content and sections
+css/style.css                 All styling (colors, fonts, layout, image-based envelope)
+js/script.js                  Envelope animation, countdown timer, scroll reveals, guest search + RSVP
+assets/                       Image assets (see below)
+data/guests.json              Guest list used by the RSVP search (see below)
+google-apps-script/Code.gs    Script that logs RSVP submissions to a Google Sheet
 ```
 
 ## Assets
@@ -34,7 +36,7 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 2. **Header** — your monogram plus a live countdown to the big day, fixed at the top of every page as you scroll. There's no navigation menu — the header is informational only.
 3. **Invitation** — a short quote, your gold-framed couple photo, "Together With Their Families," names in script, the formal request line, date, ceremony & reception details (swan-heart motif above Ceremony/RSVP, candelabra above Reception), and an optional registry note.
 4. **RSVP teaser** — a second lace envelope, opened, with a "Kindly RSVP — Click Here" card that scrolls down to the form.
-5. **RSVP form** — on the `feature/guest-list-rsvp` branch, this is a guest-list search (see below) instead of a free-text name field.
+5. **RSVP form** — a guest-list search (see below) instead of a free-text name field.
 
 ## Customize it
 
@@ -45,11 +47,9 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 5. **Photo** — see the Assets section above; replacing it means swapping `assets/photo-frame.webp` for a new composited frame+photo graphic.
 6. **Colors & fonts** — all defined as CSS variables at the top of `css/style.css` (`--cream`, `--taupe`, `--brown`, fonts, etc.), so you can retheme the whole site by changing a handful of values.
 
-## Guest-list search RSVP (experimental — `feature/guest-list-rsvp` branch)
+## Guest-list search RSVP
 
-**Not merged to `main` yet — the live site is unaffected until this is confirmed and merged.**
-
-Instead of a free-text name field, the RSVP section now asks guests to search for themselves by name. If found, it reveals their whole party (family/couple) as a checklist so they can untick anyone not attending, instead of typing a guest count.
+Instead of a free-text name field, the RSVP section asks guests to search for themselves by name. If found, it reveals their whole party (family/couple) as a checklist so they can untick anyone not attending, instead of typing a guest count.
 
 **How it works:**
 1. `data/guests.json` holds the guest list as an array of groups:
@@ -59,26 +59,32 @@ Instead of a free-text name field, the RSVP section now asks guests to search fo
      { "id": "sarah-khoury", "label": "Sarah Khoury", "members": ["Sarah Khoury"] }
    ]
    ```
-   `label` is the friendly name shown above the checklist (and in the "pick one" list if a search matches more than one group); `members` is every person in that party. **The file currently contains sample data for testing** — replace it with your real guest list before merging this branch.
+   `label` is the friendly name shown above the checklist (and in the "pick one" list if a search matches more than one group); `members` is every person in that party. **The file currently contains sample data for testing** — replace it with the real guest list before sending this site to real guests.
 2. A search matches a group if every word typed is the start of some word in any one member's name — so "Rita", "Rita Abou", or the full name all find the Abou Khalil family; searching a shared surname can surface more than one group, in which case the visitor picks the right one from a list.
-3. Once a group is found, every member is shown as a checked-by-default checkbox; unticking someone marks them as not attending. Submitting sends a WhatsApp message listing who's attending and who isn't from that party (reusing the WhatsApp flow already on the site).
-
-**Converting your Excel file:** once you send it, I'll convert it to this JSON format — the main thing I need from the spreadsheet is which rows belong together as one party (a shared family/household ID column works well, or I can infer it from a "party name" column if that's how it's laid out).
+3. Once a group is found, every member is shown as a checked-by-default checkbox; unticking someone marks them as not attending. Submitting logs the response to a Google Sheet — see the next section.
 
 **Privacy trade-off:** this is a fully static site with no backend, so `data/guests.json` is fetched by the page and searched in the visitor's own browser — the complete guest list (names and family groupings) is downloadable by anyone who opens their browser's dev tools, even though it's never displayed on screen. That's a reasonable trade-off for a low-stakes wedding site, but if it matters, the alternative is a small private backend lookup (e.g. a Google Sheets Apps Script endpoint) that never sends the full list to the browser — happy to build that instead if you'd rather.
 
-## Making the RSVP form actually work
+## Recording RSVPs to a Google Sheet
 
-Submitting the RSVP form currently opens WhatsApp with the guest's details pre-filled, addressed to the number(s) in `CONFIG.whatsappNumbers` (`js/script.js`). One real limitation: the guest still has to tap Send themselves inside WhatsApp — no browser can silently send a WhatsApp message on a site's behalf.
+Submitting the RSVP form logs the response as a new row in a Google Sheet, via a small Google Apps Script Web App — no other backend needed.
 
-If you'd rather collect responses by email/spreadsheet instead of (or alongside) WhatsApp, you can still point the form at a service like [Formspree](https://formspree.io) or Google Forms:
-1. Create a free form endpoint there.
-2. In `index.html`, find the `<form id="rsvpForm">` element and add an `action` pointing to your endpoint, e.g.:
-   ```html
-   <form class="rsvp__form" id="rsvpForm" action="https://formspree.io/f/xxxxxxx" method="POST">
-   ```
-   The script steps aside and lets the form submit normally once an `action` is present, instead of intercepting it for WhatsApp.
-3. **On the `feature/guest-list-rsvp` branch**, note the checklist checkboxes don't have `name=` attributes (they're read via JavaScript, not a native form submit) — wiring up a native `action` there would need each checkbox given a `name`/`value` first.
+**Setup:**
+1. Open (or create) the Google Sheet you want responses to land in.
+2. **Extensions → Apps Script**, delete the starter code, and paste in the contents of `google-apps-script/Code.gs` from this repo.
+3. **Deploy → New deployment**, click the gear icon, choose type **Web app**. Set **Execute as: Me** and **Who has access: Anyone**.
+4. Deploy, and authorize the permissions Google prompts for.
+5. Copy the **Web app URL** (it ends in `/exec`).
+6. In `js/script.js`, set `CONFIG.rsvpEndpoint` to that URL.
+
+Each submission appends a row with a timestamp, the party's name, who's attending, who's not, and an attending count, to a sheet tab called "RSVPs" (created automatically on first submission).
+
+**Two things worth knowing:**
+- If `CONFIG.rsvpEndpoint` is left empty, submitting just shows the local "Thank you" message without recording anywhere — handy for testing the UI before the Sheet is wired up.
+- Apps Script Web Apps don't support CORS in a way `fetch()` can read a response from, so the site sends the request in "fire and forget" mode: it can tell you if the request failed to reach Google at all (shows an error message), but not if something went wrong inside the script itself (e.g. a typo introduced while editing `Code.gs`). Worth doing a real test submission and checking the Sheet after any changes to the script.
+- This currently only logs a running list of *responses* — it won't show guests who haven't responded at all yet, since it only writes a row when someone actually submits. If you want a full roster view (everyone from the guest list, with a status per person including "no response yet"), that's a reasonable next step — just ask.
+
+**Alternative:** if you'd rather use [Formspree](https://formspree.io) or Google Forms instead, add an `action` attribute to `<form id="rsvpForm">` in `index.html`, e.g. `action="https://formspree.io/f/xxxxxxx" method="POST"` — the script steps aside and lets the form submit normally once an `action` is present. Note the party checklist's checkboxes don't have `name=` attributes (they're read via JavaScript, not a native form submit), so wiring up a native `action` this way would need each checkbox given a `name`/`value` first.
 
 ## Hosting on GitHub Pages
 

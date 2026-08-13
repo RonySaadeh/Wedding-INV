@@ -27,12 +27,13 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 - `swan-heart-motif.svg` — small two-swans-forming-a-heart motif above Ceremony and RSVP, colored to match the site's brown palette (`#6b4630`)
 - `candelabra.svg` — three-candle candelabra motif above Reception to Follow, same brown color
 - `swan-heart.svg` — an earlier, larger swan-and-heart icon (with spread wings and water lines); currently unused, kept in case you prefer it back
+- `entrance-song.mp3` — background music that starts playing when the envelope (or "Skip intro") is tapped; swap this file for a different track if you'd rather, no code changes needed
 
 **Worth knowing:** the wax seal is baked into the envelope images with the initials **"WJ"** — which happens to already match Wassim & Jamela. If names ever change, that seal would need a re-exported asset with new initials, since it's a flat graphic, not editable text. Same goes for the couple photo in the gold frame — swap `assets/photo-frame.webp` for a new photo composited into a matching frame graphic if needed.
 
 ## Page flow
 
-1. **Envelope intro** — a Bible/love quote, a lace-trimmed envelope with your monogram. Tap to open.
+1. **Envelope intro** — a Bible/love quote, a lace-trimmed envelope with your monogram. Tap to open, which also starts the entrance song (`assets/entrance-song.mp3`, looping); a small mute button appears bottom-right once it's playing so guests can turn it off. Browsers only allow audio to autoplay off a real tap/click, so this deliberately doesn't try to play automatically for visitors with "reduce motion" enabled, since they skip straight past the tap.
 2. **Header** — your monogram plus a live countdown to the big day, fixed at the top of every page as you scroll. There's no navigation menu — the header is informational only.
 3. **Invitation** — a short quote, your gold-framed couple photo, "Together With Their Families," names in script, the formal request line, date, ceremony & reception details (swan-heart motif above Ceremony/RSVP, candelabra above Reception), and an optional registry note.
 4. **RSVP teaser** — a second lace envelope, opened, with a "Kindly RSVP — Click Here" card that scrolls down to the form.

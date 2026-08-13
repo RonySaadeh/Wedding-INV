@@ -56,6 +56,40 @@ a{ color: inherit; text-decoration: none; }
 .reveal.in-view{ opacity: 1; transform: translateY(0); }
 
 /* =========================================================
+   MUSIC TOGGLE
+   ========================================================= */
+.music-toggle{
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1001;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(250,245,234,.92);
+  color: var(--brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.2);
+  cursor: pointer;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.music-toggle[hidden]{ display: none; }
+.music-toggle:hover{ transform: translateY(-2px); }
+.music-toggle.is-muted{ color: var(--brown-deep); opacity: .55; }
+.music-toggle.is-muted svg{ position: relative; }
+.music-toggle.is-muted::after{
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
+
+/* =========================================================
    ENVELOPE INTRO
    ========================================================= */
 .envelope-overlay{

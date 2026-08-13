@@ -33,8 +33,42 @@
   var skipIntro = document.getElementById("skipIntro");
   var siteNav = document.getElementById("siteNav");
   var siteContent = document.getElementById("siteContent");
+  var entranceSong = document.getElementById("entranceSong");
+  var musicToggle = document.getElementById("musicToggle");
 
   document.body.classList.add("no-scroll");
+
+  // Autoplay is only allowed off a real user gesture (the envelope tap
+  // or "Skip intro" click both qualify) — calling play() straight from
+  // those handlers satisfies that. Once it's actually playing, reveal
+  // the mute toggle so guests have a way to turn it back off.
+  function playEntranceSong() {
+    var playPromise = entranceSong.play();
+    if (playPromise && playPromise.then) {
+      playPromise
+        .then(function () {
+          musicToggle.hidden = false;
+        })
+        .catch(function () {
+          // Autoplay blocked — nothing to fall back to without another
+          // gesture, so just leave the song stopped.
+        });
+    }
+  }
+
+  musicToggle.addEventListener("click", function () {
+    if (entranceSong.paused) {
+      entranceSong.play();
+      musicToggle.classList.remove("is-muted");
+      musicToggle.setAttribute("aria-label", "Pause music");
+      musicToggle.setAttribute("aria-pressed", "false");
+    } else {
+      entranceSong.pause();
+      musicToggle.classList.add("is-muted");
+      musicToggle.setAttribute("aria-label", "Play music");
+      musicToggle.setAttribute("aria-pressed", "true");
+    }
+  });
 
   function revealSite() {
     overlay.classList.add("is-hidden");
@@ -50,6 +84,7 @@
     if (envelope.classList.contains("is-opening")) return;
     envelope.classList.add("is-opening");
     tapHint.style.opacity = "0";
+    playEntranceSong();
     setTimeout(revealSite, 1100);
   }
 
@@ -63,7 +98,10 @@
         openEnvelope();
       }
     });
-    skipIntro.addEventListener("click", revealSite);
+    skipIntro.addEventListener("click", function () {
+      playEntranceSong();
+      revealSite();
+    });
   }
 
   /* =========================================================

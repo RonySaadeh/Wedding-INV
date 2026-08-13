@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=26">
+<link rel="stylesheet" href="css/style.css?v=27">
 </head>
 <body>
 
@@ -140,8 +140,7 @@
       <p class="rsvp__party-hint">Please untick anyone from your party who won't be attending.</p>
       <div class="rsvp__party-list" id="rsvpPartyList"></div>
 
-      <button type="submit" class="btn-dark">RSVP</button>
-      <p class="rsvp__success" id="rsvpSuccess" hidden>Thank you! Your RSVP has been recorded.</p>
+      <button type="submit" class="btn-dark" id="rsvpSubmitBtn">RSVP</button>
       <p class="rsvp__error" id="rsvpError" hidden>Something went wrong sending your RSVP. Please try again, or message us on WhatsApp directly.</p>
 
       <button type="button" class="rsvp__change-search" id="rsvpChangeSearch">Not you? Search again</button>
@@ -159,6 +158,15 @@
 
 </main>
 
-<script src="js/script.js?v=25"></script>
+<!-- RSVP CONFIRMATION POPUP -->
+<div class="rsvp-modal-overlay" id="rsvpModal" hidden>
+  <div class="rsvp-modal" role="dialog" aria-modal="true" aria-labelledby="rsvpModalTitle">
+    <p class="rsvp-modal__title" id="rsvpModalTitle">Thank You</p>
+    <p class="rsvp-modal__text" id="rsvpModalText">Your RSVP has been recorded.</p>
+    <button type="button" class="btn-dark" id="rsvpModalClose">Close</button>
+  </div>
+</div>
+
+<script src="js/script.js?v=26"></script>
 </body>
 </html>

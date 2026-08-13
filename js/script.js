@@ -164,8 +164,10 @@
      RSVP: guest-list search + party checklist
      ========================================================= */
   var rsvpForm = document.getElementById("rsvpForm");
-  var rsvpSuccess = document.getElementById("rsvpSuccess");
+  var rsvpSubmitBtn = document.getElementById("rsvpSubmitBtn");
   var rsvpError = document.getElementById("rsvpError");
+  var rsvpModal = document.getElementById("rsvpModal");
+  var rsvpModalClose = document.getElementById("rsvpModalClose");
 
   var guestSearchStep = document.getElementById("rsvpSearchStep");
   var guestSearchInput = document.getElementById("guestSearch");
@@ -291,13 +293,28 @@
     }
   });
 
+  function resetSubmitBtn() {
+    rsvpSubmitBtn.hidden = false;
+    rsvpSubmitBtn.disabled = false;
+    rsvpSubmitBtn.textContent = "RSVP";
+  }
+
+  function showRsvpModal(text) {
+    document.getElementById("rsvpModalText").textContent = text;
+    rsvpModal.hidden = false;
+  }
+
+  rsvpModalClose.addEventListener("click", function () {
+    rsvpModal.hidden = true;
+  });
+
   rsvpChangeSearch.addEventListener("click", function () {
     rsvpForm.hidden = true;
     guestSearchStep.hidden = false;
     guestSearchInput.value = "";
     guestSearchInput.focus();
-    rsvpSuccess.hidden = true;
     rsvpError.hidden = true;
+    resetSubmitBtn();
   });
 
   function buildRsvpPayload() {
@@ -323,9 +340,15 @@
     e.preventDefault();
     rsvpError.hidden = true;
 
+    // Disable + relabel immediately so a slow network can't be mistaken
+    // for a missed click — that's what was causing repeated submissions.
+    rsvpSubmitBtn.disabled = true;
+    rsvpSubmitBtn.textContent = "Sending…";
+
     if (!CONFIG.rsvpEndpoint) {
       // Not configured yet — nothing to send to, just confirm locally.
-      rsvpSuccess.hidden = false;
+      rsvpSubmitBtn.hidden = true;
+      showRsvpModal("Thank you! Your RSVP has been recorded.");
       return;
     }
 
@@ -344,10 +367,12 @@
       body: JSON.stringify(buildRsvpPayload()),
     })
       .then(function () {
-        rsvpSuccess.hidden = false;
+        rsvpSubmitBtn.hidden = true;
+        showRsvpModal("Thank you! Your RSVP has been recorded.");
       })
       .catch(function () {
         rsvpError.hidden = false;
+        resetSubmitBtn();
       });
   });
 })();

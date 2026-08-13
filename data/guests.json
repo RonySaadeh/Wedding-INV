@@ -1,0 +1,27 @@
+[
+  {
+    "id": "abou-khalil-family",
+    "label": "The Abou Khalil Family",
+    "members": ["Elie Abou Khalil", "Rita Abou Khalil", "Karim Abou Khalil", "Maya Abou Khalil"]
+  },
+  {
+    "id": "haddad-couple",
+    "label": "Tony & Nadine Haddad",
+    "members": ["Tony Haddad", "Nadine Haddad"]
+  },
+  {
+    "id": "sarah-khoury",
+    "label": "Sarah Khoury",
+    "members": ["Sarah Khoury"]
+  },
+  {
+    "id": "el-khoury-family",
+    "label": "The El Khoury Family",
+    "members": ["Georges El Khoury", "Layal El Khoury", "Joe El Khoury"]
+  },
+  {
+    "id": "farah-couple",
+    "label": "Ziad & Christelle Farah",
+    "members": ["Ziad Farah", "Christelle Farah"]
+  }
+]

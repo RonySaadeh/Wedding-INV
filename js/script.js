@@ -128,40 +128,172 @@
   }
 
   /* =========================================================
-     RSVP form
+     RSVP: guest-list search + party checklist
      ========================================================= */
   var rsvpForm = document.getElementById("rsvpForm");
   var rsvpSuccess = document.getElementById("rsvpSuccess");
   var whatsappFallback = document.getElementById("whatsappFallback");
   var whatsappExtraLinks = document.getElementById("whatsappExtraLinks");
-  var attendingGroup = document.getElementById("attendingGroup");
-  var attendingValue = document.getElementById("attendingValue");
-  var defaultAttendingValue = attendingValue ? attendingValue.value : "";
 
-  function setActivePill(value) {
-    attendingGroup.querySelectorAll(".pill").forEach(function (p) {
-      p.classList.toggle("is-active", p.getAttribute("data-value") === value);
+  var guestSearchStep = document.getElementById("rsvpSearchStep");
+  var guestSearchInput = document.getElementById("guestSearch");
+  var guestSearchBtn = document.getElementById("guestSearchBtn");
+  var rsvpSearchMessage = document.getElementById("rsvpSearchMessage");
+  var rsvpSearchChoices = document.getElementById("rsvpSearchChoices");
+  var rsvpPartyLabel = document.getElementById("rsvpPartyLabel");
+  var rsvpPartyList = document.getElementById("rsvpPartyList");
+  var rsvpChangeSearch = document.getElementById("rsvpChangeSearch");
+
+  var guestList = [];
+  fetch("data/guests.json")
+    .then(function (res) {
+      return res.json();
+    })
+    .then(function (data) {
+      guestList = data;
+    })
+    .catch(function () {
+      guestList = [];
     });
+
+  function normalizeName(str) {
+    return str.toLowerCase().trim().replace(/\s+/g, " ");
   }
 
-  if (attendingGroup) {
-    attendingGroup.querySelectorAll(".pill").forEach(function (pill) {
-      pill.addEventListener("click", function () {
-        setActivePill(pill.getAttribute("data-value"));
-        attendingValue.value = pill.getAttribute("data-value");
+  function tokenize(str) {
+    var normalized = normalizeName(str);
+    return normalized.length ? normalized.split(" ") : [];
+  }
+
+  // A query matches a member name if every query token is at least the
+  // start of some token in that name — so "rita", "rita abou", or the
+  // full "rita abou khalil" all match "Rita Abou Khalil".
+  function nameMatches(queryTokens, memberName) {
+    var memberTokens = tokenize(memberName);
+    return queryTokens.every(function (qt) {
+      return memberTokens.some(function (mt) {
+        return mt.indexOf(qt) === 0;
       });
     });
   }
 
+  function findMatchingGroups(query) {
+    var queryTokens = tokenize(query);
+    if (!queryTokens.length) return [];
+    return guestList.filter(function (group) {
+      return group.members.some(function (member) {
+        return nameMatches(queryTokens, member);
+      });
+    });
+  }
+
+  function showSearchMessage(html) {
+    rsvpSearchMessage.innerHTML = html;
+    rsvpSearchMessage.hidden = false;
+  }
+
+  function clearSearchChoices() {
+    rsvpSearchChoices.innerHTML = "";
+    rsvpSearchChoices.hidden = true;
+  }
+
+  function selectGroup(group) {
+    rsvpSearchMessage.hidden = true;
+    clearSearchChoices();
+    guestSearchStep.hidden = true;
+
+    rsvpPartyLabel.textContent = group.label || group.members.join(", ");
+    rsvpPartyList.innerHTML = "";
+
+    group.members.forEach(function (name) {
+      var item = document.createElement("label");
+      item.className = "rsvp__party-item";
+
+      var checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = true;
+      checkbox.dataset.name = name;
+      checkbox.addEventListener("change", function () {
+        item.classList.toggle("is-declined", !checkbox.checked);
+      });
+
+      var span = document.createElement("span");
+      span.textContent = name;
+
+      item.appendChild(checkbox);
+      item.appendChild(span);
+      rsvpPartyList.appendChild(item);
+    });
+
+    rsvpForm.hidden = false;
+    rsvpForm.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function runGuestSearch() {
+    var query = guestSearchInput.value.trim();
+    rsvpSearchMessage.hidden = true;
+    clearSearchChoices();
+    if (!query) return;
+
+    var matches = findMatchingGroups(query);
+
+    if (matches.length === 0) {
+      showSearchMessage(
+        "We couldn't find that name on our guest list. Please double-check the spelling, or " +
+          '<a href="https://wa.me/' +
+          CONFIG.whatsappNumbers[0] +
+          '" target="_blank" rel="noopener">message us on WhatsApp</a> so we can help.'
+      );
+    } else if (matches.length === 1) {
+      selectGroup(matches[0]);
+    } else {
+      showSearchMessage("We found a few possible matches — please select yours:");
+      rsvpSearchChoices.hidden = false;
+      matches.forEach(function (group) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "rsvp__search-choice";
+        btn.textContent = group.label || group.members.join(", ");
+        btn.addEventListener("click", function () {
+          selectGroup(group);
+        });
+        rsvpSearchChoices.appendChild(btn);
+      });
+    }
+  }
+
+  guestSearchBtn.addEventListener("click", runGuestSearch);
+  guestSearchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      runGuestSearch();
+    }
+  });
+
+  rsvpChangeSearch.addEventListener("click", function () {
+    rsvpForm.hidden = true;
+    guestSearchStep.hidden = false;
+    guestSearchInput.value = "";
+    guestSearchInput.focus();
+    rsvpSuccess.hidden = true;
+    whatsappFallback.hidden = true;
+    whatsappExtraLinks.innerHTML = "";
+  });
+
   function buildWhatsAppMessage() {
-    var name = document.getElementById("guestName").value.trim();
-    var guests = document.getElementById("guestCount").value;
-    return (
-      "New RSVP\n" +
-      "Name: " + name + "\n" +
-      "Attending: " + attendingValue.value + "\n" +
-      "Guests: " + guests
-    );
+    var checkboxes = rsvpPartyList.querySelectorAll("input[type=checkbox]");
+    var attending = [];
+    var declined = [];
+    checkboxes.forEach(function (cb) {
+      (cb.checked ? attending : declined).push(cb.dataset.name);
+    });
+
+    var lines = ["New RSVP", "Party: " + rsvpPartyLabel.textContent];
+    lines.push("Attending: " + (attending.length ? attending.join(", ") : "None"));
+    if (declined.length) {
+      lines.push("Not attending: " + declined.join(", "));
+    }
+    return lines.join("\n");
   }
 
   rsvpForm.addEventListener("submit", function (e) {
@@ -205,8 +337,5 @@
     });
 
     rsvpSuccess.hidden = false;
-    rsvpForm.reset();
-    setActivePill(defaultAttendingValue);
-    attendingValue.value = defaultAttendingValue;
   });
 })();

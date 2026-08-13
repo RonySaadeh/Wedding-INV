@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=6">
+<link rel="stylesheet" href="css/style.css?v=7">
 </head>
 <body>
 
@@ -69,13 +69,16 @@
     <p class="invitation__date reveal">Saturday, June 12, 2027</p>
 
     <div class="invitation__event reveal">
-      <svg class="candle-icon" viewBox="0 0 60 70" aria-hidden="true">
-        <path d="M18 66 Q18 40 22 40 M30 66 L30 30 M42 66 Q42 40 38 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-        <ellipse cx="18" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <ellipse cx="30" cy="24" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <ellipse cx="42" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M8 62 Q30 54 52 62" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M25 60 Q30 66 35 60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <svg class="swan-icon" viewBox="0 0 92 40" aria-hidden="true">
+        <g id="swanCeremony">
+          <ellipse cx="14" cy="27" rx="13" ry="8" fill="currentColor"/>
+          <path d="M24,23 C17,15 18,5 28,3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="29.5" cy="4" r="3" fill="currentColor"/>
+          <path d="M32,2.5 L37.5,4 L32,6.2 Z" fill="currentColor"/>
+          <path d="M4,22 Q13,17 20,23" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+        </g>
+        <use href="#swanCeremony" transform="scale(-1,1) translate(-92,0)"/>
+        <path d="M46,10 C44,6 38,7 38,12 C38,16 46,21 46,21 C46,21 54,16 54,12 C54,7 48,6 46,10 Z" fill="currentColor" opacity="0.85"/>
       </svg>
       <p class="invitation__event-label">Religious Ceremony</p>
       <p class="invitation__event-time">4:00 PM</p>
@@ -83,13 +86,16 @@
     </div>
 
     <div class="invitation__event reveal">
-      <svg class="candle-icon" viewBox="0 0 60 70" aria-hidden="true">
-        <path d="M18 66 Q18 40 22 40 M30 66 L30 30 M42 66 Q42 40 38 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-        <ellipse cx="18" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <ellipse cx="30" cy="24" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <ellipse cx="42" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M8 62 Q30 54 52 62" fill="none" stroke="currentColor" stroke-width="1.2"/>
-        <path d="M25 60 Q30 66 35 60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      <svg class="swan-icon" viewBox="0 0 92 40" aria-hidden="true">
+        <g id="swanReception">
+          <ellipse cx="14" cy="27" rx="13" ry="8" fill="currentColor"/>
+          <path d="M24,23 C17,15 18,5 28,3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+          <circle cx="29.5" cy="4" r="3" fill="currentColor"/>
+          <path d="M32,2.5 L37.5,4 L32,6.2 Z" fill="currentColor"/>
+          <path d="M4,22 Q13,17 20,23" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+        </g>
+        <use href="#swanReception" transform="scale(-1,1) translate(-92,0)"/>
+        <path d="M46,10 C44,6 38,7 38,12 C38,16 46,21 46,21 C46,21 54,16 54,12 C54,7 48,6 46,10 Z" fill="currentColor" opacity="0.85"/>
       </svg>
       <p class="invitation__event-label">Reception to Follow</p>
       <p class="invitation__event-venue">The Grand Terrace Estate, Beirut</p>
@@ -112,13 +118,16 @@
   <!-- RSVP -->
   <section class="rsvp" id="rsvp">
     <h2 class="rsvp__title reveal">Rsvp</h2>
-    <svg class="candle-icon candle-icon--rsvp reveal" viewBox="0 0 60 70" aria-hidden="true">
-      <path d="M18 66 Q18 40 22 40 M30 66 L30 30 M42 66 Q42 40 38 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-      <ellipse cx="18" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <ellipse cx="30" cy="24" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <ellipse cx="42" cy="34" rx="3" ry="6" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M8 62 Q30 54 52 62" fill="none" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M25 60 Q30 66 35 60" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <svg class="swan-icon swan-icon--rsvp reveal" viewBox="0 0 92 40" aria-hidden="true">
+      <g id="swanRsvp">
+        <ellipse cx="14" cy="27" rx="13" ry="8" fill="currentColor"/>
+        <path d="M24,23 C17,15 18,5 28,3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+        <circle cx="29.5" cy="4" r="3" fill="currentColor"/>
+        <path d="M32,2.5 L37.5,4 L32,6.2 Z" fill="currentColor"/>
+        <path d="M4,22 Q13,17 20,23" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+      </g>
+      <use href="#swanRsvp" transform="scale(-1,1) translate(-92,0)"/>
+      <path d="M46,10 C44,6 38,7 38,12 C38,16 46,21 46,21 C46,21 54,16 54,12 C54,7 48,6 46,10 Z" fill="currentColor" opacity="0.85"/>
     </svg>
     <p class="rsvp__intro reveal">We'd love for you to be part of our celebration! Please fill in the form below to let us know if you can make it.</p>
     <p class="rsvp__deadline reveal">Please reply by May 1st, 2027</p>
@@ -167,6 +176,6 @@
 
 </main>
 
-<script src="js/script.js?v=6"></script>
+<script src="js/script.js?v=7"></script>
 </body>
 </html>

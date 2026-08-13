@@ -70,6 +70,35 @@
   });
 
   /* =========================================================
+     Fit the couple's names to one line
+     Measures the ACTUAL rendered width (whatever font ends up
+     loading on this device) rather than guessing a font-size that
+     assumes particular character widths — the script font
+     (Alex Brush) is noticeably wider than typical fallback serif
+     fonts, so a size tuned against a fallback can still wrap.
+     ========================================================= */
+  function fitNamesToOneLine() {
+    var namesEl = document.querySelector(".invitation__names");
+    if (!namesEl || !namesEl.parentElement) return;
+
+    namesEl.style.fontSize = ""; // reset to the CSS-defined size first
+    var maxWidth = namesEl.parentElement.clientWidth;
+    var textWidth = namesEl.scrollWidth;
+
+    if (textWidth > maxWidth) {
+      var currentSize = parseFloat(window.getComputedStyle(namesEl).fontSize);
+      var scale = (maxWidth / textWidth) * 0.96; // small safety margin
+      namesEl.style.fontSize = currentSize * scale + "px";
+    }
+  }
+
+  fitNamesToOneLine();
+  window.addEventListener("resize", fitNamesToOneLine);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitNamesToOneLine);
+  }
+
+  /* =========================================================
      Countdown
      ========================================================= */
   var weddingTime = new Date(CONFIG.weddingDate).getTime();

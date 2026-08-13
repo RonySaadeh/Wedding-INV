@@ -171,7 +171,6 @@
   var guestSearchInput = document.getElementById("guestSearch");
   var guestSearchBtn = document.getElementById("guestSearchBtn");
   var rsvpSearchMessage = document.getElementById("rsvpSearchMessage");
-  var rsvpSearchChoices = document.getElementById("rsvpSearchChoices");
   var rsvpPartyLabel = document.getElementById("rsvpPartyLabel");
   var rsvpPartyList = document.getElementById("rsvpPartyList");
   var rsvpChangeSearch = document.getElementById("rsvpChangeSearch");
@@ -197,24 +196,25 @@
     return normalized.length ? normalized.split(" ") : [];
   }
 
-  // A query matches a member name if every query token is at least the
-  // start of some token in that name — so "rita", "rita abou", or the
-  // full "rita abou khalil" all match "Rita Abou Khalil".
-  function nameMatches(queryTokens, memberName) {
-    var memberTokens = tokenize(memberName);
-    return queryTokens.every(function (qt) {
-      return memberTokens.some(function (mt) {
-        return mt.indexOf(qt) === 0;
-      });
-    });
+  // Full names only, no partial/prefix matching — a search must spell out
+  // a member's complete name (word order, case, and spacing don't matter)
+  // to match. Prefix matching (e.g. "Douaihy" matching every "Douaihy ..."
+  // name) would let a search reveal other guests' names and families, so
+  // it's deliberately not supported here.
+  function canonicalKey(str) {
+    return tokenize(str).slice().sort().join(" ");
+  }
+
+  function nameMatches(queryKey, memberName) {
+    return queryKey === canonicalKey(memberName);
   }
 
   function findMatchingGroups(query) {
-    var queryTokens = tokenize(query);
-    if (!queryTokens.length) return [];
+    var queryKey = canonicalKey(query);
+    if (!queryKey) return [];
     return guestList.filter(function (group) {
       return group.members.some(function (member) {
-        return nameMatches(queryTokens, member);
+        return nameMatches(queryKey, member);
       });
     });
   }
@@ -224,14 +224,8 @@
     rsvpSearchMessage.hidden = false;
   }
 
-  function clearSearchChoices() {
-    rsvpSearchChoices.innerHTML = "";
-    rsvpSearchChoices.hidden = true;
-  }
-
   function selectGroup(group) {
     rsvpSearchMessage.hidden = true;
-    clearSearchChoices();
     guestSearchStep.hidden = true;
 
     rsvpPartyLabel.textContent = group.label || group.members.join(", ");
@@ -264,7 +258,6 @@
   function runGuestSearch() {
     var query = guestSearchInput.value.trim();
     rsvpSearchMessage.hidden = true;
-    clearSearchChoices();
     if (!query) return;
 
     var matches = findMatchingGroups(query);
@@ -279,18 +272,14 @@
     } else if (matches.length === 1) {
       selectGroup(matches[0]);
     } else {
-      showSearchMessage("We found a few possible matches — please select yours:");
-      rsvpSearchChoices.hidden = false;
-      matches.forEach(function (group) {
-        var btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "rsvp__search-choice";
-        btn.textContent = group.label || group.members.join(", ");
-        btn.addEventListener("click", function () {
-          selectGroup(group);
-        });
-        rsvpSearchChoices.appendChild(btn);
-      });
+      // More than one guest shares this exact name. Never reveal who —
+      // just ask them to confirm/correct their name, or reach out.
+      showSearchMessage(
+        "We found more than one guest with that exact name. Please double-check it matches your invitation exactly (e.g. add a middle or last name), or " +
+          '<a href="https://wa.me/' +
+          CONFIG.contactWhatsApp +
+          '" target="_blank" rel="noopener">message us on WhatsApp</a> so we can help.'
+      );
     }
   }
 

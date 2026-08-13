@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=24">
+<link rel="stylesheet" href="css/style.css?v=25">
 </head>
 <body>
 
@@ -112,9 +112,9 @@
     <p class="rsvp__deadline reveal">Please reply by September 1st, 2026</p>
 
     <!--
-      GUEST-LIST SEARCH: data/guests.json currently holds SAMPLE data
-      for testing. Replace it with the real guest list before sending
-      this site to real guests — see the README for the format.
+      GUEST-LIST SEARCH: guests search for themselves by full name
+      against data/guests.json — see the README for the format and
+      how matching works.
     -->
     <div class="rsvp__search reveal" id="rsvpSearchStep">
       <div class="form-row">
@@ -123,7 +123,6 @@
       </div>
       <button type="button" class="btn-dark" id="guestSearchBtn">Find My Invitation</button>
       <p class="rsvp__search-message" id="rsvpSearchMessage" hidden></p>
-      <div class="rsvp__search-choices" id="rsvpSearchChoices" hidden></div>
     </div>
 
     <!--
@@ -160,6 +159,6 @@
 
 </main>
 
-<script src="js/script.js?v=24"></script>
+<script src="js/script.js?v=25"></script>
 </body>
 </html>

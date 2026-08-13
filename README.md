@@ -31,7 +31,7 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 
 1. **Envelope intro** — a Bible/love quote, a lace-trimmed envelope with your monogram. Tap to open.
 2. **Header** — your monogram plus a live countdown to the big day, fixed at the top of every page as you scroll. There's no navigation menu — the header is informational only.
-3. **Invitation** — your gold-framed couple photo, names in script, date, ceremony & reception details (with a two-swans-forming-a-heart icon), and an optional registry note.
+3. **Invitation** — your gold-framed couple photo, names in script, date, ceremony & reception details (with a candle icon), and an optional registry note.
 4. **RSVP teaser** — a second lace envelope, opened, with a "Kindly RSVP — Click Here" card that scrolls down to the form.
 5. **RSVP form** — name, attendance (pill buttons), guest count, and a submit button.
 

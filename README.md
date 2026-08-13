@@ -22,7 +22,8 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 - `photo-frame.webp` — the gold oval frame with your couple photo, shown at the top of the invitation section
 - `bg-texture.webp` — the paisley/damask texture tiled as the page background
 - `lace-trim.webp` — a standalone lace crop, currently unused but available if you want it as a decorative accent elsewhere
-- `swan-heart-motif.svg` — small two-swans-forming-a-heart motif above Ceremony/Reception/RSVP, colored to match the site's brown palette (`#6b4630`)
+- `swan-heart-motif.svg` — small two-swans-forming-a-heart motif above Ceremony and RSVP, colored to match the site's brown palette (`#6b4630`)
+- `candelabra.svg` — three-candle candelabra motif above Reception to Follow, same brown color
 - `swan-heart.svg` — an earlier, larger swan-and-heart icon (with spread wings and water lines); currently unused, kept in case you prefer it back
 
 **Two things worth knowing about these assets:**

@@ -208,6 +208,22 @@
   }
 
   /* =========================================================
+     RSVP teaser gate
+     The RSVP section starts with the `hidden` attribute (see
+     index.html) so there's nothing after the "Kindly RSVP" envelope
+     for a visitor to scroll past — clicking the envelope is the only
+     way to reveal it and get there.
+     ========================================================= */
+  var teaserEnvelope = document.querySelector(".teaser-envelope");
+  var rsvpSection = document.getElementById("rsvp");
+
+  teaserEnvelope.addEventListener("click", function (e) {
+    e.preventDefault();
+    rsvpSection.hidden = false;
+    rsvpSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  /* =========================================================
      RSVP: guest-list search + party checklist
      ========================================================= */
   var rsvpForm = document.getElementById("rsvpForm");

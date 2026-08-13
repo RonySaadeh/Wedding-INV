@@ -28,8 +28,11 @@
      Envelope intro
      ========================================================= */
   var overlay = document.getElementById("envelopeOverlay");
-  var envelope = document.getElementById("envelope");
-  var tapHint = document.getElementById("tapHint");
+  // Two envelope variants exist (mobile lace / desktop boxed, swapped
+  // by CSS media query), so these are queried as lists rather than by
+  // ID and every handler below acts on both in lockstep.
+  var envelopes = document.querySelectorAll(".envelope");
+  var tapHints = document.querySelectorAll(".tap-hint");
   var skipIntro = document.getElementById("skipIntro");
   var siteNav = document.getElementById("siteNav");
   var siteContent = document.getElementById("siteContent");
@@ -81,9 +84,13 @@
   }
 
   function openEnvelope() {
-    if (envelope.classList.contains("is-opening")) return;
-    envelope.classList.add("is-opening");
-    tapHint.style.opacity = "0";
+    if (envelopes[0].classList.contains("is-opening")) return;
+    envelopes.forEach(function (el) {
+      el.classList.add("is-opening");
+    });
+    tapHints.forEach(function (el) {
+      el.style.opacity = "0";
+    });
     playEntranceSong();
     setTimeout(revealSite, 1100);
   }
@@ -91,12 +98,14 @@
   if (prefersReducedMotion) {
     revealSite();
   } else {
-    envelope.addEventListener("click", openEnvelope);
-    envelope.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openEnvelope();
-      }
+    envelopes.forEach(function (el) {
+      el.addEventListener("click", openEnvelope);
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openEnvelope();
+        }
+      });
     });
     skipIntro.addEventListener("click", function () {
       playEntranceSong();

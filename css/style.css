@@ -105,15 +105,6 @@ a{ color: inherit; text-decoration: none; }
   visibility: hidden;
   pointer-events: none;
 }
-.envelope-overlay__lace{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-
 .skip-intro{
   position: absolute;
   top: 22px;
@@ -132,13 +123,23 @@ a{ color: inherit; text-decoration: none; }
 }
 .skip-intro:hover{ background: rgba(107,70,48,.08); }
 
-.envelope-stage{
+/* Mobile variant: lace fills the whole screen, seal + text sit on it. */
+.envelope-variant--desktop{ display: none; }
+
+.envelope-variant--mobile .envelope-overlay__lace{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+.envelope-variant--mobile .envelope-stage{
   position: absolute;
   z-index: 1;
   inset: 0;
 }
-
-.envelope{
+.envelope-variant--mobile .envelope{
   position: absolute;
   left: 50%;
   top: 52%;
@@ -146,19 +147,18 @@ a{ color: inherit; text-decoration: none; }
   width: min(22vw, 92px);
   cursor: pointer;
 }
-.envelope__seal{
+.envelope-variant--mobile .envelope__seal{
   display: block;
   width: 100%;
   height: auto;
   filter: drop-shadow(0 6px 10px rgba(0,0,0,.3));
   transition: opacity .6s var(--ease), transform .6s var(--ease);
 }
-.envelope.is-opening .envelope__seal{
+.envelope-variant--mobile .envelope.is-opening .envelope__seal{
   opacity: 0;
   transform: scale(.85);
 }
-
-.tap-hint{
+.envelope-variant--mobile .tap-hint{
   position: absolute;
   left: 50%;
   top: 80%;
@@ -168,6 +168,64 @@ a{ color: inherit; text-decoration: none; }
   letter-spacing: .3em;
   text-transform: uppercase;
   white-space: nowrap;
+  transition: opacity .4s;
+}
+
+/* Desktop/laptop variant: the original boxed envelope + quote. */
+@media (min-width: 900px){
+  .envelope-variant--mobile{ display: none; }
+  .envelope-variant--desktop{
+    display: flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    background: url('../assets/bg-texture.webp') center/cover no-repeat;
+  }
+}
+.envelope-variant--desktop .envelope-stage{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  padding: 0 8vw;
+}
+.envelope-variant--desktop .envelope-quote{
+  text-align: center;
+  color: var(--ink);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  letter-spacing: .04em;
+  max-width: 640px;
+  line-height: 1.5;
+}
+.envelope-variant--desktop .envelope{
+  position: relative;
+  width: min(80vw, 340px);
+  aspect-ratio: 700 / 494;
+  cursor: pointer;
+}
+.envelope-variant--desktop .envelope__img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,.25));
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.envelope-variant--desktop .envelope.is-opening .envelope__img{
+  opacity: 0;
+  transform: scale(.92);
+}
+.envelope-variant--desktop .tap-hint{
+  color: var(--brown-deep);
+  font-size: .82rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
   transition: opacity .4s;
 }
 
@@ -287,8 +345,20 @@ a{ color: inherit; text-decoration: none; }
 .invitation__event-time{
   font-size: 1.1rem;
   color: var(--ink);
-  margin: 0;
+  margin: 0 0 .7rem;
 }
+.invitation__map-btn{
+  display: inline-block;
+  padding: 7px 18px;
+  border: 1px solid rgba(107,70,48,.45);
+  border-radius: 999px;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--brown-deep);
+  transition: background .3s;
+}
+.invitation__map-btn:hover{ background: rgba(107,70,48,.08); }
 
 .invitation__registry{
   margin-top: 1rem;
@@ -297,18 +367,45 @@ a{ color: inherit; text-decoration: none; }
   color: var(--brown-deep);
   line-height: 1.6;
 }
+.gift-icon{ width: min(16vw, 52px); height: auto; margin-bottom: .5rem; }
+.invitation__registry-heading{
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .85rem;
+  color: var(--brown-deep);
+  margin: 0 0 .8rem;
+}
 .invitation__registry p{ margin: 0 0 1rem; }
 .invitation__registry-details{
   display: flex;
   flex-direction: column;
-  gap: .4rem;
+  gap: .7rem;
   font-style: normal;
   letter-spacing: .03em;
 }
-.invitation__registry-details strong{
+.registry-card{
+  background: var(--cream-deep);
+  border: 1px solid rgba(107,70,48,.15);
+  border-radius: 10px;
+  padding: .9rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+}
+.registry-card__label{
   font-style: normal;
-  letter-spacing: .12em;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: .72rem;
   color: var(--brown);
+}
+.registry-card__value{
+  font-style: normal;
+  font-size: 1rem;
+  letter-spacing: .04em;
+  color: var(--ink);
 }
 
 /* =========================================================

@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=32">
+<link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body>
 
@@ -40,17 +40,35 @@
 </button>
 
 <!-- ================= ENVELOPE INTRO ================= -->
+<!-- Two variants, swapped by viewport width in CSS (see "ENVELOPE
+     INTRO" in style.css): the full-page lace on phones, the boxed
+     envelope + quote on laptop/desktop. JS binds to both via the
+     shared .envelope / .tap-hint classes, not IDs. -->
 <div class="envelope-overlay" id="envelopeOverlay">
   <button class="skip-intro" id="skipIntro" type="button">Skip intro</button>
 
-  <img class="envelope-overlay__lace" src="assets/lace-trim.webp" alt="">
+  <div class="envelope-variant envelope-variant--mobile">
+    <img class="envelope-overlay__lace" src="assets/lace-trim.webp" alt="">
 
-  <div class="envelope-stage">
-    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open invitation">
-      <img class="envelope__seal" src="assets/stamp-seal.webp" alt="Sealed wedding invitation envelope">
+    <div class="envelope-stage">
+      <div class="envelope" role="button" tabindex="0" aria-label="Open invitation">
+        <img class="envelope__seal" src="assets/stamp-seal.webp" alt="Sealed wedding invitation envelope">
+      </div>
+
+      <p class="tap-hint">Open Invitation</p>
     </div>
+  </div>
 
-    <p class="tap-hint" id="tapHint">Open Invitation</p>
+  <div class="envelope-variant envelope-variant--desktop">
+    <div class="envelope-stage">
+      <p class="envelope-quote">&ldquo;In every lifetime, I will choose you&rdquo;</p>
+
+      <div class="envelope" role="button" tabindex="0" aria-label="Open invitation">
+        <img class="envelope__img" src="assets/envelope-closed.webp" alt="Sealed wedding invitation envelope">
+      </div>
+
+      <p class="tap-hint">Open Invitation</p>
+    </div>
   </div>
 </div>
 
@@ -86,6 +104,10 @@
       <p class="invitation__event-label">The Ceremony</p>
       <p class="invitation__event-venue">Tajali El Rab Greek Orthodox Church<br>Chekka</p>
       <p class="invitation__event-time">4:00 PM (TBD)</p>
+      <!-- Defaults to a Google Maps name search, which works with no
+           setup. For an exact pin instead: open the location in Google
+           Maps, Share > Copy link, and paste it in as this href. -->
+      <a class="invitation__map-btn" href="https://www.google.com/maps/search/?api=1&query=Tajali+El+Rab+Greek+Orthodox+Church%2C+Chekka" target="_blank" rel="noopener">View on Google Maps</a>
     </div>
 
     <div class="invitation__event reveal">
@@ -93,14 +115,23 @@
       <p class="invitation__event-label">The Reception</p>
       <p class="invitation__event-venue">Les Talus Venue<br>Okaybeh</p>
       <p class="invitation__event-time">5:30 PM (TBD)</p>
+      <a class="invitation__map-btn" href="https://www.google.com/maps/search/?api=1&query=Les+Talus+Venue%2C+Okaybeh" target="_blank" rel="noopener">View on Google Maps</a>
     </div>
 
     <div class="invitation__registry reveal">
+      <img class="gift-icon" src="assets/gift-box.svg" alt="">
+      <p class="invitation__registry-heading">Gifts</p>
       <p>Your presence is our greatest gift.<br>For those who wish to extend their good wishes with a gift, please find the details below.</p>
-      <p class="invitation__registry-details">
-        <span><strong>IBAN</strong> — AE550200000037010931001</span>
-        <span><strong>WHISH</strong> — 20699970-03</span>
-      </p>
+      <div class="invitation__registry-details">
+        <div class="registry-card">
+          <span class="registry-card__label">IBAN</span>
+          <span class="registry-card__value">AE550200000037010931001</span>
+        </div>
+        <div class="registry-card">
+          <span class="registry-card__label">WHISH</span>
+          <span class="registry-card__value">20699970-03</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -178,6 +209,6 @@
   </div>
 </div>
 
-<script src="js/script.js?v=27"></script>
+<script src="js/script.js?v=28"></script>
 </body>
 </html>

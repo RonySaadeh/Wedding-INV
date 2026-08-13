@@ -1,8 +1,8 @@
 [
   {"id": "f1", "label": "Jamela and Wassim", "members": ["Jamela Douaihy","Wassim Saadeh"]},
   {"id": "f2", "label": "Youssef Douaihy and Janot Harrak", "members": ["Youssef Douaihy","Janot Harrak","Charbel Douaihy"]},
-  {"id": "f3", "label": "Naim and Monica", "members": ["Naim Douaihy","Monica Tawny"]},
-  {"id": "f4", "label": "Georges and Antonia", "members": ["Georges Nehme","Antonia Douaihy","Charbel Nehme","Estephane Nehme","Peter Nehme"]},
+  {"id": "f3", "label": "Naim Douaihy and Monica Tawny", "members": ["Naim Douaihy","Monica Tawny"]},
+  {"id": "f4", "label": "Georges Nehme and Antonia Douaihy", "members": ["Georges Nehme","Antonia Douaihy","Charbel Nehme","Estephane Nehme","Peter Nehme"]},
   {"id": "f5", "label": "Charbel and Emma", "members": ["Charbel Issa","Emma Douaihy","Aya Maria Issa"]},
   {"id": "f6", "label": "Joseph Harrak And Rania Douaihy", "members": ["Joseph Harrak","Rania Douaihy","Antoine Harrak","Joe Harrak","Maria Jose Harrak"]},
   {"id": "f7", "label": "Gaby Harrak and Joelle Mousally", "members": ["Gaby Harrak","Joelle Moussally","Yara Harrak","Lucas Harrak"]},

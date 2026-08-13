@@ -150,22 +150,35 @@ a{ color: inherit; text-decoration: none; }
 .envelope{
   position: relative;
   width: min(80vw, 340px);
-  aspect-ratio: 700 / 494;
+  aspect-ratio: 500 / 370;
   cursor: pointer;
 }
 .envelope__img{
   position: absolute;
+  object-fit: contain;
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.envelope__lace{
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
   object-position: center top;
   filter: drop-shadow(0 20px 40px rgba(0,0,0,.25));
-  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.envelope__seal{
+  width: 24%;
+  height: auto;
+  left: 50%;
+  top: 44%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.3));
 }
 .envelope.is-opening .envelope__img--closed{
   opacity: 0;
   transform: scale(.92);
+}
+.envelope.is-opening .envelope__seal{
+  transform: translate(-50%, -50%) scale(.92);
 }
 
 .tap-hint{

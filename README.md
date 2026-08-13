@@ -19,18 +19,19 @@ google-apps-script/Code.gs    Script that logs RSVP submissions to a Google Shee
 
 These come from the "Website Assets" pack you provided, cropped and compressed to WebP for the web (originals were ~55MB total; these are ~310KB combined):
 
-- `envelope-closed.webp` — the sealed envelope shown on load
+- `envelope-closed.webp` — an earlier all-in-one sealed-envelope graphic; currently unused now that the intro composes `lace-trim.webp` + `stamp-seal.webp` instead (see below), kept in case you prefer it back
 - `envelope-open.webp` — crossfades in when the envelope is tapped, and reused for the RSVP teaser section
 - `photo-frame.webp` — the gold oval frame with your couple photo, shown at the top of the invitation section
 - `bg-texture.webp` — the paisley/damask texture tiled as the page background
-- `lace-trim.webp` — a standalone lace crop, currently unused but available if you want it as a decorative accent elsewhere
+- `lace-trim.webp` — the lace flap shown on the intro screen, tapped to open the invitation
+- `stamp-seal.webp` — the gold "WJ" wax-seal graphic layered on top of the lace flap on the intro screen
 - `swan-heart-motif.svg` — small two-swans-forming-a-heart motif above Ceremony, colored to match the site's brown palette (`#6b4630`)
 - `cheers-glasses.svg` — clinking champagne glasses icon shown under "Click Here" on the RSVP teaser envelope
 - `candelabra.svg` — three-candle candelabra motif above Reception to Follow, same brown color
 - `swan-heart.svg` — an earlier, larger swan-and-heart icon (with spread wings and water lines); currently unused, kept in case you prefer it back
 - `entrance-song.mp3` — background music that starts playing when the envelope (or "Skip intro") is tapped; swap this file for a different track if you'd rather, no code changes needed
 
-**Worth knowing:** the wax seal is baked into the envelope images with the initials **"WJ"** — which happens to already match Wassim & Jamela. If names ever change, that seal would need a re-exported asset with new initials, since it's a flat graphic, not editable text. Same goes for the couple photo in the gold frame — swap `assets/photo-frame.webp` for a new photo composited into a matching frame graphic if needed.
+**Worth knowing:** `assets/stamp-seal.webp` (the intro screen's wax seal) has the initials **"WJ"** baked in — which happens to already match Wassim & Jamela. If names ever change, that seal would need a re-exported asset with new initials, since it's a flat graphic, not editable text. Same goes for the couple photo in the gold frame — swap `assets/photo-frame.webp` for a new photo composited into a matching frame graphic if needed.
 
 ## Page flow
 

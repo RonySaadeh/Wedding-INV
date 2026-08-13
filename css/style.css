@@ -285,7 +285,19 @@ a{ color: inherit; text-decoration: none; }
   color: var(--brown-deep);
   line-height: 1.6;
 }
-.invitation__registry a{ text-decoration: underline; }
+.invitation__registry p{ margin: 0 0 1rem; }
+.invitation__registry-details{
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  font-style: normal;
+  letter-spacing: .03em;
+}
+.invitation__registry-details strong{
+  font-style: normal;
+  letter-spacing: .12em;
+  color: var(--brown);
+}
 
 /* =========================================================
    RSVP TEASER ENVELOPE

@@ -12,12 +12,12 @@
     // google-apps-script/Code.gs and the README for setup steps.
     // Left empty, RSVP submissions just show the local "Thank you"
     // message without recording anywhere.
-    rsvpEndpoint: "",
+    rsvpEndpoint: "https://script.google.com/macros/s/AKfycbyKR9LW3Ldag4IAIEAPd89-w0ByNMNtmm4JLllMDV0jdIHWwXvpYdCrqQB7NjLTQc7H/exec",
 
     // WhatsApp number offered to a guest whose name isn't found on the
     // guest list, so they can reach out directly. International
     // format, digits only (no "+", spaces, or leading zeros).
-    contactWhatsApp: "96176532981",
+    contactWhatsApp: "96171737441",
   };
 
   var prefersReducedMotion = window.matchMedia(

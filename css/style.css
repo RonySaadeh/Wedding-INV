@@ -111,7 +111,7 @@ a{ color: inherit; text-decoration: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
 }
 
 .skip-intro{
@@ -135,16 +135,14 @@ a{ color: inherit; text-decoration: none; }
 .envelope-stage{
   position: absolute;
   z-index: 1;
-  left: 50%;
-  top: 47%;
-  transform: translate(-50%, -50%);
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 18px;
+  inset: 0;
 }
 
 .envelope{
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  transform: translate(-50%, -50%);
   width: min(22vw, 92px);
   cursor: pointer;
 }
@@ -161,10 +159,15 @@ a{ color: inherit; text-decoration: none; }
 }
 
 .tap-hint{
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%);
   color: var(--brown-deep);
   font-size: .82rem;
   letter-spacing: .3em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: opacity .4s;
 }
 

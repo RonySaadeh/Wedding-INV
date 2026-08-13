@@ -1,4 +1,4 @@
-# Bride & Groom — Wedding Invitation Website
+# Wassim & Jamela — Wedding Invitation Website
 
 A luxurious, single-page wedding invitation site with a **lace-trimmed envelope intro**: a real envelope graphic with a scalloped lace edge and a gold wax seal opens on tap, revealing a formal invitation, countdown, and RSVP flow underneath — all built from your own asset pack.
 
@@ -26,21 +26,19 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 - `candelabra.svg` — three-candle candelabra motif above Reception to Follow, same brown color
 - `swan-heart.svg` — an earlier, larger swan-and-heart icon (with spread wings and water lines); currently unused, kept in case you prefer it back
 
-**Two things worth knowing about these assets:**
-1. The wax seal is baked into the envelope images with the initials **"WJ"** — since it's a flat graphic, that can't be changed with text/CSS. If your initials are different, you'd need a re-exported version of that asset with your own monogram (from wherever this pack came from), or a replacement graphic.
-2. The couple photo in the gold frame — if that's not actually you two, swap `assets/photo-frame.webp` for your own photo. Since the frame and photo are one flat image, you'd need your photo composited into a matching gold-frame graphic (e.g. back in Canva) rather than just dropping in a new file of a different shape.
+**Worth knowing:** the wax seal is baked into the envelope images with the initials **"WJ"** — which happens to already match Wassim & Jamela. If names ever change, that seal would need a re-exported asset with new initials, since it's a flat graphic, not editable text. Same goes for the couple photo in the gold frame — swap `assets/photo-frame.webp` for a new photo composited into a matching frame graphic if needed.
 
 ## Page flow
 
 1. **Envelope intro** — a Bible/love quote, a lace-trimmed envelope with your monogram. Tap to open.
 2. **Header** — your monogram plus a live countdown to the big day, fixed at the top of every page as you scroll. There's no navigation menu — the header is informational only.
-3. **Invitation** — your gold-framed couple photo, names in script, date, ceremony & reception details (with a two-swans-and-a-heart line-art icon), and an optional registry note.
+3. **Invitation** — a short quote, your gold-framed couple photo, "Together With Their Families," names in script, the formal request line, date, ceremony & reception details (swan-heart motif above Ceremony/RSVP, candelabra above Reception), and an optional registry note.
 4. **RSVP teaser** — a second lace envelope, opened, with a "Kindly RSVP — Click Here" card that scrolls down to the form.
 5. **RSVP form** — name, attendance (pill buttons), guest count, and a submit button.
 
 ## Customize it
 
-1. **Names & monogram** — find/replace "Groom", "Bride" and "B & G" throughout `index.html`.
+1. **Names & monogram** — currently set to "Wassim & Jamela" / "W & J"; find/replace throughout `index.html` if this changes.
 2. **Countdown date** — open `js/script.js` and edit `CONFIG.weddingDate` at the top. The countdown itself lives in the `<header class="site-nav">` block in `index.html` (`.site-nav__countdown`).
 3. **Ceremony / reception details** — update venue names, times, and addresses in the two `.invitation__event` blocks.
 4. **Registry note** — edit or delete `.invitation__registry`.

@@ -213,20 +213,41 @@ a{ color: inherit; text-decoration: none; }
   flex-direction:column;
   align-items:center;
 }
+.invitation__quote{
+  font-style: italic;
+  color: var(--ink);
+  font-size: clamp(1.05rem, 3vw, 1.3rem);
+  letter-spacing: .02em;
+  max-width: 480px;
+  margin: 0 0 2rem;
+}
 .invitation__photo{
   width: min(55vw, 240px);
   height: auto;
-  margin: 0 0 2rem;
+  margin: 0 0 1.6rem;
   filter: drop-shadow(0 20px 30px rgba(0,0,0,.2));
+}
+.invitation__eyebrow{
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  font-size: .78rem;
+  color: var(--brown-deep);
+  margin: 0 0 .8rem;
 }
 .invitation__names{
   font-family: var(--font-script);
   font-size: clamp(3.2rem, 9vw, 5.4rem);
   color: var(--brown);
   line-height: 1.15;
-  margin-bottom: 1.4rem;
+  margin-bottom: 1rem;
 }
 .invitation__names span{ padding: 0 .1em; }
+.invitation__request{
+  font-style: italic;
+  color: var(--ink);
+  font-size: 1.1rem;
+  margin: 0 0 1.6rem;
+}
 .invitation__date{
   text-transform: uppercase;
   letter-spacing: .2em;

@@ -5,7 +5,7 @@
      CONFIG — edit these to personalize the site
      ========================================================= */
   var CONFIG = {
-    weddingDate: "2027-06-12T16:00:00", // used by the countdown timer
+    weddingDate: "2026-10-10T16:00:00", // used by the countdown timer
 
     // RSVP responses are sent as a WhatsApp "click to chat" message to
     // each number listed here. Numbers must be in international format,

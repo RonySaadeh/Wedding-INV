@@ -360,6 +360,7 @@ a{ color: inherit; text-decoration: none; }
   width: min(14vw, 46px);
   height: auto;
   margin-top: .5rem;
+  color: var(--brown-deep);
   opacity: .85;
 }
 

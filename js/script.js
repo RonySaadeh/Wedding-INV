@@ -238,8 +238,7 @@
   var rsvpSearchMessage = document.getElementById("rsvpSearchMessage");
   var rsvpPartyLabel = document.getElementById("rsvpPartyLabel");
   var rsvpPartyList = document.getElementById("rsvpPartyList");
-  var rsvpPlusOne = document.getElementById("rsvpPlusOne");
-  var rsvpPlusOneName = document.getElementById("rsvpPlusOneName");
+  var rsvpPlusOnes = document.getElementById("rsvpPlusOnes");
   var rsvpChangeSearch = document.getElementById("rsvpChangeSearch");
 
   var guestList = [];
@@ -291,6 +290,39 @@
     rsvpSearchMessage.hidden = false;
   }
 
+  // Builds one optional name field per plus-one a group is allowed —
+  // "plusOnes": 2 gets two fields, "allowPlusOne": true (the older,
+  // singular flag) gets one, everyone else gets none.
+  function renderPlusOnes(group) {
+    var count = group.plusOnes || (group.allowPlusOne ? 1 : 0);
+    rsvpPlusOnes.innerHTML = "";
+
+    for (var i = 0; i < count; i++) {
+      var row = document.createElement("div");
+      row.className = "form-row rsvp__plus-one";
+
+      var input = document.createElement("input");
+      input.type = "text";
+      input.className = "rsvp__plus-one-input";
+      input.autocomplete = "off";
+      input.placeholder = "Their full name";
+      input.id = "rsvpPlusOneName" + i;
+
+      var label = document.createElement("label");
+      label.setAttribute("for", input.id);
+      label.textContent =
+        count === 1
+          ? "Bringing a plus one? Add their full name (optional)"
+          : "Plus-one guest " + (i + 1) + " — full name (optional)";
+
+      row.appendChild(label);
+      row.appendChild(input);
+      rsvpPlusOnes.appendChild(row);
+    }
+
+    rsvpPlusOnes.hidden = count === 0;
+  }
+
   function selectGroup(group) {
     rsvpSearchMessage.hidden = true;
     guestSearchStep.hidden = true;
@@ -318,8 +350,7 @@
       rsvpPartyList.appendChild(item);
     });
 
-    rsvpPlusOneName.value = "";
-    rsvpPlusOne.hidden = !group.allowPlusOne;
+    renderPlusOnes(group);
 
     rsvpForm.hidden = false;
     rsvpForm.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -382,7 +413,7 @@
     guestSearchInput.value = "";
     guestSearchInput.focus();
     rsvpError.hidden = true;
-    rsvpPlusOne.hidden = true;
+    rsvpPlusOnes.innerHTML = "";
     resetSubmitBtn();
   });
 
@@ -394,10 +425,10 @@
       (cb.checked ? attending : declined).push(cb.dataset.name);
     });
 
-    if (!rsvpPlusOne.hidden) {
-      var plusOneName = rsvpPlusOneName.value.trim();
-      if (plusOneName) attending.push(plusOneName + " (+1)");
-    }
+    rsvpPlusOnes.querySelectorAll("input[type=text]").forEach(function (input) {
+      var name = input.value.trim();
+      if (name) attending.push(name + " (+1)");
+    });
 
     return {
       party: rsvpPartyLabel.textContent,

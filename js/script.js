@@ -208,6 +208,58 @@
   }
 
   /* =========================================================
+     Registry: copy IBAN / Whish
+     ========================================================= */
+  var copyIcon =
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+  var checkIcon =
+    '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+
+  document.querySelectorAll(".registry-card__copy").forEach(function (btn) {
+    var resetTimer;
+    btn.addEventListener("click", function () {
+      var text = btn.dataset.copy;
+
+      var copied;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        copied = navigator.clipboard.writeText(text);
+      } else {
+        // Fallback for browsers without the async Clipboard API.
+        var tempInput = document.createElement("textarea");
+        tempInput.value = text;
+        tempInput.style.position = "fixed";
+        tempInput.style.opacity = "0";
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand("copy");
+          copied = Promise.resolve();
+        } catch (err) {
+          copied = Promise.reject(err);
+        }
+        document.body.removeChild(tempInput);
+      }
+
+      copied
+        .then(function () {
+          clearTimeout(resetTimer);
+          btn.innerHTML = checkIcon;
+          btn.classList.add("is-copied");
+          btn.setAttribute("aria-label", "Copied!");
+          resetTimer = setTimeout(function () {
+            btn.innerHTML = copyIcon;
+            btn.classList.remove("is-copied");
+            btn.setAttribute("aria-label", "Copy " + btn.closest(".registry-card").querySelector(".registry-card__label").textContent);
+          }, 1500);
+        })
+        .catch(function () {
+          // Clipboard access denied/unavailable — nothing more we can do,
+          // the value is still shown as plain selectable text.
+        });
+    });
+  });
+
+  /* =========================================================
      RSVP teaser gate
      The RSVP section starts with the `hidden` attribute (see
      index.html) so there's nothing after the "Kindly RSVP" envelope

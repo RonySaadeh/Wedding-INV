@@ -23,7 +23,7 @@
 <!-- Bump ?v=N on css/style.css and js/script.js below whenever either
      file changes, so browsers fetch the new version instead of a
      cached copy of the old one. -->
-<link rel="stylesheet" href="css/style.css?v=35">
+<link rel="stylesheet" href="css/style.css?v=36">
 </head>
 <body>
 
@@ -120,11 +120,27 @@
       <div class="invitation__registry-details">
         <div class="registry-card">
           <span class="registry-card__label">IBAN</span>
-          <span class="registry-card__value">AE550200000037010931001</span>
+          <div class="registry-card__row">
+            <span class="registry-card__value">AE550200000037010931001</span>
+            <button type="button" class="registry-card__copy" data-copy="AE550200000037010931001" aria-label="Copy IBAN">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="registry-card">
           <span class="registry-card__label">WHISH</span>
-          <span class="registry-card__value">20699970-03</span>
+          <div class="registry-card__row">
+            <span class="registry-card__value">20699970-03</span>
+            <button type="button" class="registry-card__copy" data-copy="20699970-03" aria-label="Copy Whish number">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -211,6 +227,6 @@
   </div>
 </div>
 
-<script src="js/script.js?v=31"></script>
+<script src="js/script.js?v=32"></script>
 </body>
 </html>

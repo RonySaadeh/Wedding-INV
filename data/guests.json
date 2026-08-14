@@ -34,7 +34,7 @@
   {"id": "f33", "label": "Onida El Hajj", "members": ["Onida El Hajj"]},
   {"id": "f34", "label": "Layal Makary and Anthony Habshe", "members": ["Layal Makary","Anthony Habshe"]},
   {"id": "f35", "label": "Charbel Yammine", "members": ["Charbel Yammine"]},
-  {"id": "f36", "label": "Alex Ayoub", "members": ["Alex Ayoub"]},
+  {"id": "f36", "label": "Alex Ayoub", "members": ["Alex Ayoub"] , "allowPlusOne": true},
   {"id": "f37", "label": "Jad Abboud and Yvonna Finianos", "members": ["Jad Abboud","Yvonna Finianos"]},
   {"id": "f38", "label": "Georges Mawad and Yara Douaihy", "members": ["Georges Mawad","Yara Douaihy"]},
   {"id": "f39", "label": "Tannous Douaihy and Rene Douaihy", "members": ["Tannous Douaihy","Rene Douaihy"]},

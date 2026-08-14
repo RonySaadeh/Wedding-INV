@@ -46,7 +46,7 @@
   {"id": "f45", "label": "Louna Douaihy and Antoun Tabar", "members": ["Louna Douaihy","Antoun Tabar","Anthony Tabar","Badoui Tabar"]},
   {"id": "f46", "label": "Pamela Geitani", "members": ["Pamela Geitani"], "allowPlusOne": true},
   {"id": "f47", "label": "Hanady Khattar", "members": ["Hanady Khattar"], "allowPlusOne": true},
-  {"id": "f48", "label": "Rodayna and Family", "members": ["Rodayna and Family"], "PlusOnes": true},
+  {"id": "f48", "label": "Rodayna and Family", "members": ["Rodayna Fayad"], "PlusOnes": 2},
   {"id": "f49", "label": "Suzan Fawwaz Kalouk", "members": ["Suzan Fawwaz Kalouk"], "allowPlusOne": true},
   {"id": "f50", "label": "Etab Al Hasania", "members": ["Etab Al Hasania"], "allowPlusOne": true}
 ]

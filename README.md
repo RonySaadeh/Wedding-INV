@@ -11,7 +11,7 @@ index.html                    All page content and sections
 css/style.css                 All styling (colors, fonts, layout, image-based envelope)
 js/script.js                  Envelope animation, countdown timer, scroll reveals, guest search + RSVP
 assets/                       Image assets (see below)
-data/guests.json              Guest list used by the RSVP search (see below)
+data/sanklinjit.json          Guest list used by the RSVP search (see below)
 google-apps-script/Code.gs    Script that logs RSVP submissions to a Google Sheet
 ```
 
@@ -56,7 +56,7 @@ These come from the "Website Assets" pack you provided, cropped and compressed t
 Instead of a free-text name field, the RSVP section asks guests to search for themselves by name. If found, it reveals their whole party (family/couple) as a checklist so they can untick anyone not attending, instead of typing a guest count.
 
 **How it works:**
-1. `data/guests.json` holds the guest list as an array of groups:
+1. `data/sanklinjit.json` holds the guest list as an array of groups:
    ```json
    [
      { "id": "abou-khalil-family", "label": "The Abou Khalil Family", "members": ["Elie Abou Khalil", "Rita Abou Khalil", "Karim Abou Khalil", "Maya Abou Khalil"] },
@@ -67,7 +67,7 @@ Instead of a free-text name field, the RSVP section asks guests to search for th
 2. A search matches a group only if it spells out a member's **complete, exact name** — word order, capitalization, and extra spacing don't matter, but partial names don't match. So "Rita Abou Khalil" (in any word order/case) finds the Abou Khalil family, but searching just "Abou Khalil" or "Rita" does not. This is deliberate: matching on a partial name (e.g. just a surname) would let a search surface — and on a tie, list — other guests' names, which is a privacy leak for a guest list with repeated surnames. If two different guests share the exact same full name, the search reports the tie without revealing either party, and asks the visitor to add a middle/last name or contact you directly.
 3. Once a group is found, every member is shown as a checked-by-default checkbox; unticking someone marks them as not attending. If the group has `plusOnes`, that many optional "full name" fields appear below the checklist — any that get filled in are added to the submission's attending list tagged `(+1)` so it's clear in the Sheet they weren't among the originally invited names. Submitting logs the response to a Google Sheet — see the next section.
 
-**Privacy trade-off:** this is a fully static site with no backend, so `data/guests.json` is fetched by the page and searched in the visitor's own browser — the complete guest list (names and family groupings) is downloadable by anyone who opens their browser's dev tools, even though it's never displayed on screen. That's a reasonable trade-off for a low-stakes wedding site, but if it matters, the alternative is a small private backend lookup (e.g. a Google Sheets Apps Script endpoint) that never sends the full list to the browser — happy to build that instead if you'd rather.
+**Privacy trade-off:** this is a fully static site with no backend, so `data/sanklinjit.json` is fetched by the page and searched in the visitor's own browser — the complete guest list (names and family groupings) is downloadable by anyone who opens their browser's dev tools, even though it's never displayed on screen. The deliberately odd filename (rather than `guests.json`) is a minor speed bump against casual URL-guessing, not real protection — anyone who actually opens dev tools while using the RSVP search, reads `js/script.js`, or (if this repo is public) just browses the repo on GitHub can find it immediately. That's a reasonable trade-off for a low-stakes wedding site, but if it matters, the real alternative is a small private backend lookup (e.g. a Google Sheets Apps Script endpoint) that never sends the full list to the browser — happy to build that instead if you'd rather.
 
 ## Recording RSVPs to a Google Sheet
 

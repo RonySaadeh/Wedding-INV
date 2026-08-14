@@ -294,7 +294,7 @@
   var rsvpChangeSearch = document.getElementById("rsvpChangeSearch");
 
   var guestList = [];
-  fetch("data/guests.json")
+  fetch("data/sanklinjit.json")
     .then(function (res) {
       return res.json();
     })

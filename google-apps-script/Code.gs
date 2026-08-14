@@ -15,7 +15,14 @@
  * Every submitted RSVP appends one row to a sheet tab named "RSVPs"
  * (created automatically on first submission) with: timestamp, the
  * party's name, everyone marked attending, everyone marked not
- * attending, and a count of attendees.
+ * attending, and a count of attendees. It also emails NOTIFY_EMAILS a
+ * copy of each submission — an independent channel from the Sheet, so
+ * you'd still know a response came in even if the Sheet write itself
+ * silently failed. Listed as multiple addresses (rather than a
+ * primary + fallback) since the script has no way to detect a
+ * delivery failure on one address in order to retry another — sending
+ * to both up front is what actually protects against one inbox
+ * missing it.
  *
  * Note: if you ever edit this script after deploying, you need to
  * create a NEW deployment (or "Manage deployments" -> edit -> new
@@ -24,22 +31,46 @@
  */
 
 var SHEET_NAME = "RSVPs";
+var NOTIFY_EMAILS = "rony.saadehmisc@hotmail.com,rooney.saade666@gmail.com";
 
 function doPost(e) {
   var sheet = getOrCreateSheet_();
   var data = JSON.parse(e.postData.contents);
+  var attending = data.attending || [];
+  var declined = data.declined || [];
 
   sheet.appendRow([
     new Date(),
     data.party || "",
-    (data.attending || []).join(", "),
-    (data.declined || []).join(", "),
-    (data.attending || []).length,
+    attending.join(", "),
+    declined.join(", "),
+    attending.length,
   ]);
+
+  notifyByEmail_(data.party || "", attending, declined);
 
   return ContentService
     .createTextOutput(JSON.stringify({ result: "success" }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Best-effort: a mail hiccup (e.g. the daily MailApp quota) shouldn't
+// turn a successful Sheet write into a failed request.
+function notifyByEmail_(party, attending, declined) {
+  try {
+    var lines = [
+      "Party: " + party,
+      "Attending: " + (attending.join(", ") || "—"),
+      "Not attending: " + (declined.join(", ") || "—"),
+    ];
+    MailApp.sendEmail(
+      NOTIFY_EMAILS,
+      "New RSVP: " + party,
+      lines.join("\n")
+    );
+  } catch (err) {
+    // Swallow — the Sheet row above is the source of truth.
+  }
 }
 
 function doGet() {

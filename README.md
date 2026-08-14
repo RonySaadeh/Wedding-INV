@@ -81,12 +81,14 @@ Submitting the RSVP form logs the response as a new row in a Google Sheet, via a
 5. Copy the **Web app URL** (it ends in `/exec`).
 6. In `js/script.js`, set `CONFIG.rsvpEndpoint` to that URL.
 
-Each submission appends a row with a timestamp, the party's name, who's attending, who's not, and an attending count, to a sheet tab called "RSVPs" (created automatically on first submission).
+Each submission appends a row with a timestamp, the party's name, who's attending, who's not, and an attending count, to a sheet tab called "RSVPs" (created automatically on first submission). It also emails a copy of the submission to `NOTIFY_EMAILS` at the top of `Code.gs` (currently your Hotmail and Gmail addresses, both — see "Two things worth knowing" below for why not a primary/fallback pair) — a second, independent record in case the Sheet write itself ever silently fails.
 
 **Two things worth knowing:**
 - If `CONFIG.rsvpEndpoint` is left empty, submitting just shows the local "Thank you" message without recording anywhere — handy for testing the UI before the Sheet is wired up.
-- Apps Script Web Apps don't support CORS in a way `fetch()` can read a response from, so the site sends the request in "fire and forget" mode: it can tell you if the request failed to reach Google at all (shows an error message), but not if something went wrong inside the script itself (e.g. a typo introduced while editing `Code.gs`). Worth doing a real test submission and checking the Sheet after any changes to the script.
+- Apps Script Web Apps don't support CORS in a way `fetch()` can read a response from, so the site sends the request in "fire and forget" mode: it can tell you if the request failed to reach Google at all (shows an error message), but not if something went wrong inside the script itself (e.g. a typo introduced while editing `Code.gs`). That's exactly what the email notification above is for — it's a channel independent of the Sheet write, so you'd still hear about a submission even if the row never landed. Worth doing a real test submission and checking both the Sheet and your inbox after any changes to the script.
 - This currently only logs a running list of *responses* — it won't show guests who haven't responded at all yet, since it only writes a row when someone actually submits. If you want a full roster view (everyone from the guest list, with a status per person including "no response yet"), that's a reasonable next step — just ask.
+
+**If you already have this deployed:** editing `Code.gs` alone doesn't update a live deployment — go to **Deploy → Manage deployments → edit (pencil icon) → New version → Deploy** so the email notification actually takes effect.
 
 **Alternative:** if you'd rather use [Formspree](https://formspree.io) or Google Forms instead, add an `action` attribute to `<form id="rsvpForm">` in `index.html`, e.g. `action="https://formspree.io/f/xxxxxxx" method="POST"` — the script steps aside and lets the form submit normally once an `action` is present. Note the party checklist's checkboxes don't have `name=` attributes (they're read via JavaScript, not a native form submit), so wiring up a native `action` this way would need each checkbox given a `name`/`value` first.
 

@@ -238,6 +238,8 @@
   var rsvpSearchMessage = document.getElementById("rsvpSearchMessage");
   var rsvpPartyLabel = document.getElementById("rsvpPartyLabel");
   var rsvpPartyList = document.getElementById("rsvpPartyList");
+  var rsvpPlusOne = document.getElementById("rsvpPlusOne");
+  var rsvpPlusOneName = document.getElementById("rsvpPlusOneName");
   var rsvpChangeSearch = document.getElementById("rsvpChangeSearch");
 
   var guestList = [];
@@ -316,6 +318,9 @@
       rsvpPartyList.appendChild(item);
     });
 
+    rsvpPlusOneName.value = "";
+    rsvpPlusOne.hidden = !group.allowPlusOne;
+
     rsvpForm.hidden = false;
     rsvpForm.scrollIntoView({ behavior: "smooth", block: "center" });
   }
@@ -377,6 +382,7 @@
     guestSearchInput.value = "";
     guestSearchInput.focus();
     rsvpError.hidden = true;
+    rsvpPlusOne.hidden = true;
     resetSubmitBtn();
   });
 
@@ -387,6 +393,11 @@
     checkboxes.forEach(function (cb) {
       (cb.checked ? attending : declined).push(cb.dataset.name);
     });
+
+    if (!rsvpPlusOne.hidden) {
+      var plusOneName = rsvpPlusOneName.value.trim();
+      if (plusOneName) attending.push(plusOneName + " (+1)");
+    }
 
     return {
       party: rsvpPartyLabel.textContent,

@@ -60,12 +60,12 @@ Instead of a free-text name field, the RSVP section asks guests to search for th
    ```json
    [
      { "id": "abou-khalil-family", "label": "The Abou Khalil Family", "members": ["Elie Abou Khalil", "Rita Abou Khalil", "Karim Abou Khalil", "Maya Abou Khalil"] },
-     { "id": "sarah-khoury", "label": "Sarah Khoury", "members": ["Sarah Khoury"] }
+     { "id": "sarah-khoury", "label": "Sarah Khoury", "members": ["Sarah Khoury"], "allowPlusOne": true }
    ]
    ```
-   `label` is the friendly name shown above the checklist once a match is found; `members` is every person in that party.
+   `label` is the friendly name shown above the checklist once a match is found; `members` is every person in that party. Add `"allowPlusOne": true` to let that group bring a guest whose name you don't have yet — an optional text field appears on their RSVP form for them to fill in (see next point). Omit it (or set it to `false`) for everyone else.
 2. A search matches a group only if it spells out a member's **complete, exact name** — word order, capitalization, and extra spacing don't matter, but partial names don't match. So "Rita Abou Khalil" (in any word order/case) finds the Abou Khalil family, but searching just "Abou Khalil" or "Rita" does not. This is deliberate: matching on a partial name (e.g. just a surname) would let a search surface — and on a tie, list — other guests' names, which is a privacy leak for a guest list with repeated surnames. If two different guests share the exact same full name, the search reports the tie without revealing either party, and asks the visitor to add a middle/last name or contact you directly.
-3. Once a group is found, every member is shown as a checked-by-default checkbox; unticking someone marks them as not attending. Submitting logs the response to a Google Sheet — see the next section.
+3. Once a group is found, every member is shown as a checked-by-default checkbox; unticking someone marks them as not attending. If the group has `allowPlusOne`, an optional "Bringing a plus one?" text field appears below the checklist — if filled in, that name is added to the submission's attending list tagged `(+1)` so it's clear in the Sheet it wasn't one of the originally invited names. Submitting logs the response to a Google Sheet — see the next section.
 
 **Privacy trade-off:** this is a fully static site with no backend, so `data/guests.json` is fetched by the page and searched in the visitor's own browser — the complete guest list (names and family groupings) is downloadable by anyone who opens their browser's dev tools, even though it's never displayed on screen. That's a reasonable trade-off for a low-stakes wedding site, but if it matters, the alternative is a small private backend lookup (e.g. a Google Sheets Apps Script endpoint) that never sends the full list to the browser — happy to build that instead if you'd rather.
 

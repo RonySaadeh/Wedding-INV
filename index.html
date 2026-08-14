@@ -179,6 +179,13 @@
       <p class="rsvp__party-hint">Please untick anyone from your party who won't be attending.</p>
       <div class="rsvp__party-list" id="rsvpPartyList"></div>
 
+      <!-- Shown only for groups flagged "allowPlusOne" in data/guests.json
+           — see the README for how to flag a guest for this. -->
+      <div class="form-row" id="rsvpPlusOne" hidden>
+        <label for="rsvpPlusOneName">Bringing a plus one? Add their full name (optional)</label>
+        <input type="text" id="rsvpPlusOneName" placeholder="Their full name" autocomplete="off">
+      </div>
+
       <button type="submit" class="btn-dark" id="rsvpSubmitBtn">RSVP</button>
       <p class="rsvp__error" id="rsvpError" hidden>Something went wrong sending your RSVP. Please try again, or message us on WhatsApp directly.</p>
 
@@ -206,6 +213,6 @@
   </div>
 </div>
 
-<script src="js/script.js?v=29"></script>
+<script src="js/script.js?v=30"></script>
 </body>
 </html>

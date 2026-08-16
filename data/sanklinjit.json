@@ -46,7 +46,7 @@
   {"id": "f47", "label": "Hanady Khattar", "members": ["Hanady Khattar"], "allowPlusOne": true},
   {"id": "f48", "label": "Rodayna and Family", "members": ["Rodayna Fayad"], "plusOnes": 2},
   {"id": "f49", "label": "Suzan Fawwaz Kalouk", "members": ["Suzan Fawwaz Kalouk"], "allowPlusOne": true},
-  {"id": "f50", "label": "Etab Al Hasanieh", "members": ["Etab Al Hasanieh"], "allowPlusOne": true}
+  {"id": "f50", "label": "Etab Al Hasanieh", "members": ["Etab Al Hasanieh"], "allowPlusOne": true},
   {"id": "w1", "label": "Elias Saadeh and Jamal Abou Rafeh", "members":["Elias Saadeh", "Jamal Abou Rafeh"]},
   {"id": "w2", "label": "Rony Saadeh", "members":["Rony Saadeh"],"allowPlusOne": true},
   {"id": "w3", "label": "Reve Ghorayeb", "members":["Reve Ghorayeb"],"allowPlusOne": true},

@@ -96,7 +96,7 @@
   {"id": "w47", "label": "Roberto De Souza", "members":["Roberto De Souza"]},
   {"id": "w48", "label": "Khaled Arja and Hajar Arja", "members":["Khaled Arja", "Hajar Arja"]},
   {"id": "w49", "label": "Andre Santos", "members":["Andre Santos"],"allowPlusOne": true},
-  {"id": "w50", "label": "Mohammed Massadeh" , "members":["Mohammed Massadeh"]. "allowPlusOne": true},
-  {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"]. "allowPlusOne": true}
+  {"id": "w50", "label": "Mohammed Massadeh" , "members":["Mohammed Massadeh"], "allowPlusOne": true},
+  {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"], "allowPlusOne": true}
 
 ]

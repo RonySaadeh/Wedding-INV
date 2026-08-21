@@ -1,6 +1,6 @@
 [
   {"id": "f1", "label": "Jamela Douaihy and Wassim Saadeh", "members": ["Jamela Douaihy","Wassim Saadeh"]},
-  {"id": "f2", "label": "Youssef Douaihy and Janot Harrak", "members": ["Youssef Douaihy","Janot Harrak","Charbel Douaihy"]},
+  {"id": "f2", "label": "Youssef Douaihy and Janot Harrak", "members": ["Youssef Douaihy","Janot Harrak"]},
   {"id": "f3", "label": "Naim Douaihy and Monica Tawny", "members": ["Naim Douaihy","Monica Tawny"]},
   {"id": "f4", "label": "Georges Nehme and Antonia Douaihy", "members": ["Georges Nehme","Antonia Douaihy","Charbel Nehme","Estephane Nehme","Peter Nehme"]},
   {"id": "f5", "label": "Charbel Issa and Emma Douaihy", "members": ["Charbel Issa","Emma Douaihy","Aya Maria Issa"]},
@@ -8,7 +8,7 @@
   {"id": "f7", "label": "Gaby Harrak and Joelle Mousally", "members": ["Gaby Harrak","Joelle Moussally","Yara Harrak","Lucas Harrak"]},
   {"id": "f8", "label": "Raja Abdo and Joumana Harrak", "members": ["Raja Abdo","Joumana Harrak","Tony Abdo","Rebecca Abdo"]},
   {"id": "f9", "label": "Antonio Kaawi and Tonina Harrak", "members": ["Antonio Kaawi","Tonina Harrak","Margot Kaawi","Tonia Kaawi"]},
-  {"id": "f10", "label": "Nader Nader and Jocelyne Harrak", "members": ["Nader Nader","Jocelyne Harrak","Charly Nader","Nicolas Nader"]},
+  {"id": "f10", "label": "Nader Nader and Jocelyne Harrak", "members": ["Nader Nader","Jocelyne Harrak","Charly Nader","Nicolas Nader"]},s
   {"id": "f11", "label": "Georges Nader and Jess Jiguerian", "members": ["Georges Nader","Jess Jiguerian"]},
   {"id": "f12", "label": "Josephine Abchi", "members": ["Josephine Abchi"], "allowPlusOne": true},
   {"id": "f13", "label": "Antonios Douaihy and Dalal Douaihy", "members": ["Antonios Douaihy","Dalal Douaihy","Youssef Douaihy","Antonio Douaihy","Monica Douaihy"]},
@@ -47,6 +47,7 @@
   {"id": "f48", "label": "Rodayna and Family", "members": ["Rodayna Fayad"], "plusOnes": 2},
   {"id": "f49", "label": "Suzan Fawwaz Kalouk", "members": ["Suzan Fawwaz Kalouk"], "allowPlusOne": true},
   {"id": "f50", "label": "Etab Al Hasanieh", "members": ["Etab Al Hasanieh"], "allowPlusOne": true},
+  {"id": "f51", "label": "Charbel Douaihy", "members": ["Charbel Douaihy"], "allowPlusOne": true},
   {"id": "w1", "label": "Elias Saadeh and Jamal Abou Rafeh", "members":["Elias Saadeh", "Jamal Abou Rafeh"]},
   {"id": "w2", "label": "Rony Saadeh", "members":["Rony Saadeh"],"allowPlusOne": true},
   {"id": "w3", "label": "Reve Ghorayeb", "members":["Reve Ghorayeb"],"allowPlusOne": true},

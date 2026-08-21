@@ -94,7 +94,7 @@
   {"id": "w44", "label": "Elie Saadeh and Elissa Bayeh", "members":["Elie Saadeh", "Elissa Bayeh"]},
   {"id": "w45", "label": "Alexandre Otsuka", "members":["Alexandre Otsuka"],"allowPlusOne": true},
   {"id": "w46", "label": "Italo Santos", "members":["Italo Santos"],"allowPlusOne": true},
-  {"id": "w47", "label": "Roberto De Souza", "members":["Roberto De Souza"]},
+  {"id": "w47", "label": "Roberto De Souza", "members":["Roberto De Souza"], "allowPlusOne": true},
   {"id": "w48", "label": "Khaled Arja and Hajar Arja", "members":["Khaled Arja", "Hajar Arja"]},
   {"id": "w49", "label": "Andre Santos", "members":["Andre Santos"],"allowPlusOne": true},
   {"id": "w50", "label": "Mohammed Massadeh" , "members":["Mohammed Massadeh"], "allowPlusOne": true},

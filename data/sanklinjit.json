@@ -74,7 +74,7 @@
   {"id": "w24", "label": "Tannous Karam", "members":["Tannous Karam"],"allowPlusOne": true},
   {"id": "w25", "label": "Albert Nasseh and Joanna Nehmeh", "members":["Albert Nasseh", "Joanna Nehmeh"]},
   {"id": "w26", "label": "Georges Makary and Marie Christine Makary", "members":["Georges Makary", "Marie Christine Makary"]},
-  {"id": "w27", "label": "Elie Ibrahim and Graziella Sahyoun", "members":["Elie Ibrahim", "Graziella Sahyoun"]},
+  {"id": "w27", "label": "Elie Ibrahim and Graziella Sahyoun", "members":["Elie Ibrahim", "Graziella Sahyoun", "Joe Ibrahim", "Chris Ibrahim"]},
   {"id": "w28", "label": "Delara Marroun", "members":["Delara Marroun"],"allowPlusOne": true},
   {"id": "w29", "label": "Amer Choghari", "members":["Amer Choghari"],"allowPlusOne": true},
   {"id": "w30", "label": "Ailson Mendes", "members":["Ailson Mendes"],"allowPlusOne": true},
@@ -98,6 +98,6 @@
   {"id": "w48", "label": "Khaled Arja and Hajar Arja", "members":["Khaled Arja", "Hajar Arja"]},
   {"id": "w49", "label": "Andre Santos", "members":["Andre Santos"],"allowPlusOne": true},
   {"id": "w50", "label": "Mohammed Massadeh" , "members":["Mohammed Massadeh"], "allowPlusOne": true},
-  {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"], "allowPlusOne": true}
-
+  {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"], "allowPlusOne": true},
+  {"id": "w52", "label": "Eugene Ibrahim and Maria Maarawi", "members": ["Eugene Ibrahim", "Maria Maarawi"]}
 ]

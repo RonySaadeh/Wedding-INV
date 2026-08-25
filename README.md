@@ -92,6 +92,10 @@ Each submission appends a row with a timestamp, the party's name, who's attendin
 
 **Alternative:** if you'd rather use [Formspree](https://formspree.io) or Google Forms instead, add an `action` attribute to `<form id="rsvpForm">` in `index.html`, e.g. `action="https://formspree.io/f/xxxxxxx" method="POST"` — the script steps aside and lets the form submit normally once an `action` is present. Note the party checklist's checkboxes don't have `name=` attributes (they're read via JavaScript, not a native form submit), so wiring up a native `action` this way would need each checkbox given a `name`/`value` first.
 
+## Link preview (WhatsApp, iMessage, etc)
+
+The `<meta property="og:...">` tags in `index.html`'s `<head>` control what shows up when the link is shared — title, description, and a preview image. `og:image` points at `assets/preview-image.jpg`, which doesn't exist yet; upload an image there (1200x630px is the standard size these platforms expect) and it'll start showing up with no other changes needed. If you'd rather name the file something else, just update the `og:image` URL to match.
+
 ## Hosting on GitHub Pages
 
 1. Go to the repo's **Settings → Pages**.

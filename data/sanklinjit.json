@@ -99,5 +99,6 @@
   {"id": "w49", "label": "Andre Santos", "members":["Andre Santos"],"allowPlusOne": true},
   {"id": "w50", "label": "Mohammed Massadeh" , "members":["Mohammed Massadeh"], "allowPlusOne": true},
   {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"], "allowPlusOne": true},
-  {"id": "w52", "label": "Eugene Ibrahim and Maria Maarawi", "members": ["Eugene Ibrahim", "Maria Maarawi"]}
+  {"id": "w52", "label": "Eugene Ibrahim and Maria Maarawi", "members": ["Eugene Ibrahim", "Maria Maarawi"]},
+  {"id": "w53", "label": "Hani Bou Khalil", "members": ["Hani Bou Khalil"], "allowPlusOne": true}
 ]

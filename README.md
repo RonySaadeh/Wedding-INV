@@ -94,7 +94,9 @@ Each submission appends a row with a timestamp, the party's name, who's attendin
 
 ## Link preview (WhatsApp, iMessage, etc)
 
-The `<meta property="og:...">` tags in `index.html`'s `<head>` control what shows up when the link is shared — title, description, and a preview image. `og:image` points at `assets/preview-image.jpg`, which doesn't exist yet; upload an image there (1200x630px is the standard size these platforms expect) and it'll start showing up with no other changes needed. If you'd rather name the file something else, just update the `og:image` URL to match.
+The `<meta property="og:...">` tags in `index.html`'s `<head>` control what shows up when the link is shared — title, description, and a preview image. `og:image` points at `assets/preview-image.jpg` (1200x630px, the standard size these platforms expect). To swap it for a different image, replace that file (keeping the same name/size) or update the `og:image` URL to match a new filename.
+
+**Testing it:** WhatsApp/iMessage/Facebook all cache a link's preview per-URL once they've crawled it, so re-sending the same link in a chat where you already tried it before the image existed may keep showing the old (missing) preview. Test with a fresh chat/recipient, or use [Facebook's Sharing Debugger](https://developers.facebook.com/tools/debug/) to force a re-crawl.
 
 ## Hosting on GitHub Pages
 

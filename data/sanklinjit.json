@@ -65,7 +65,7 @@
   {"id": "w15", "label": "Sufyan Al Attar and Jana Rachidi", "members":["Sufyan Al Attar", "Jana Rachidi"]},
   {"id": "w16", "label": "Semaan Jamil", "members":["Semaan Jamil"],"allowPlusOne": true},
   {"id": "w17", "label": "Sahar Saab and Amine Al Kazzi", "members":["Sahar Saab", "Amine Al Kazzi"]},
-  {"id": "w18", "label": "Michael Lichaa", "members":["Michael Lichaa"],"allowPlusOne": true},
+  {"id": "w18", "label": "Michael Licha", "members":["Michael Lichaa"],"allowPlusOne": true},
   {"id": "w19", "label": "Mohsen Mouawad", "members":["Mohsen Mouawad"],"allowPlusOne": true},
   {"id": "w20", "label": "Antonio Laba and Rima Issa", "members":["Antonio Laba", "Rima Issa"]},
   {"id": "w21", "label": "Fouad Younes and Marianne Khlat", "members":["Fouad Younes", "Marianne Khlat"]},
@@ -101,5 +101,6 @@
   {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"], "allowPlusOne": true},
   {"id": "w52", "label": "Eugene Ibrahim and Maria Maarawi", "members": ["Eugene Ibrahim", "Maria Maarawi"]},
   {"id": "w53", "label": "Hani Bou Khalil", "members": ["Hani Bou Khalil"], "allowPlusOne": true},
-  {"id": "w54", "label": "Marco Ferreira and Family", "members": ["Marco Ferreira", "Barbara Salles", "Beatriz Ferreira", "Victor Ferreira"]}
+  {"id": "w54", "label": "Marco Ferreira and Family", "members": ["Marco Ferreira", "Barbara Salles", "Beatriz Ferreira", "Victor Ferreira"]},
+  {"id": "w55", "label": "Joya Ghorayeb", "members":["Joya Ghorayeb"],"allowPlusOne": true}
 ]

@@ -100,5 +100,6 @@
   {"id": "w50", "label": "Mohammed Massadeh" , "members":["Mohammed Massadeh"], "allowPlusOne": true},
   {"id": "w51", "label": "Pablo Brandao" , "members":["Pablo Brandao"], "allowPlusOne": true},
   {"id": "w52", "label": "Eugene Ibrahim and Maria Maarawi", "members": ["Eugene Ibrahim", "Maria Maarawi"]},
-  {"id": "w53", "label": "Hani Bou Khalil", "members": ["Hani Bou Khalil"], "allowPlusOne": true}
+  {"id": "w53", "label": "Hani Bou Khalil", "members": ["Hani Bou Khalil"], "allowPlusOne": true},
+  {"id": "w54", "label": "Marco Ferreira and Family", "members": ["Marco Ferreira", "Barbara Salles", "Beatriz Ferreira", "Victor Ferreira"]}
 ]

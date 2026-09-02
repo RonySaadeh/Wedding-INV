@@ -26,7 +26,7 @@
   {"id": "f30", "label": "Pierre Makary and Rachelle Makhlouf", "members": ["Pierre Makary","Rachelle Makhlouf"]},
   {"id": "f31", "label": "Rita Makhlouf", "members": ["Rita Makhlouf"], "allowPlusOne": true},
   {"id": "f32", "label": "Pessica El Hajj", "members": ["Pessica El Hajj"], "allowPlusOne": true},
-  {"id": "f33", "label": "Onida El Hajj", "members": ["Onida El Hajj"], "allowPlusOne": true},
+  {"id": "f33", "label": "Onida El Hajj and Hassan Abdulla", "members": ["Onida El Hajj","Hassan Abdulla"]},
   {"id": "f34", "label": "Anthony Habchi and Layal Makary", "members": ["Anthony Habchi","Layal Makary"]},
   {"id": "f35", "label": "Charbel Yammine", "members": ["Charbel Yammine"], "allowPlusOne": true},
   {"id": "f36", "label": "Alex Ayoub", "members": ["Alex Ayoub"] , "allowPlusOne": true},

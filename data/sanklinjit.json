@@ -31,7 +31,7 @@
   {"id": "f35", "label": "Charbel Yammine", "members": ["Charbel Yammine"], "allowPlusOne": true},
   {"id": "f36", "label": "Alex Ayoub", "members": ["Alex Ayoub"] , "allowPlusOne": true},
   {"id": "f37", "label": "Jad Abboud and Yvona Finianos", "members": ["Jad Abboud","Yvona Finianos"]},
-  {"id": "f38", "label": "Georges Moawad and Yara Douaihy", "members": ["Georges Mawad","Yara Douaihy"]},
+  {"id": "f38", "label": "Georges Moawad and Yara Douaihy", "members": ["Georges Moawad","Yara Douaihy"]},
   {"id": "f44", "label": "Hyam Nasser El Din", "members": ["Hyam Nasser El Din"], "allowPlusOne": true},
   {"id": "f45", "label": "Antoun Tabar and Louna Tabar", "members": ["Antoun Tabar","Louna Tabar","Anthony Tabar","Badoui Tabar"]},
   {"id": "f46", "label": "Pamela Geitani", "members": ["Pamela Geitani"], "allowPlusOne": true},

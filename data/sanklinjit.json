@@ -94,5 +94,6 @@
   {"id": "w52", "label": "Eugene Ibrahim and Maria Maarawi", "members": ["Eugene Ibrahim", "Maria Maarawi"]},
   {"id": "w53", "label": "Hani Bou Khalil", "members": ["Hani Bou Khalil"], "allowPlusOne": true},
   {"id": "w54", "label": "Marco Ferreira and Family", "members": ["Marco Ferreira", "Barbara Salles", "Beatriz Ferreira", "Victor Ferreira"]},
-  {"id": "w55", "label": "Joya Ghorayeb", "members":["Joya Ghorayeb"],"allowPlusOne": true}
+  {"id": "w55", "label": "Joya Ghorayeb", "members":["Joya Ghorayeb"],"allowPlusOne": true},
+  {"id": "w56", "label": "Yara Karam", "members":["Yara Karam"],"allowPlusOne": true}
 ]
